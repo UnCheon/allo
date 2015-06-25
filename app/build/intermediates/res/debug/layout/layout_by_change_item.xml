@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp"
+    android:padding="10dp">
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/songInfoBtn"
+            android:background="@drawable/allo_logo"
+            android:layout_marginLeft="8dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="12dp"
+            android:textColor="#000"
+            android:text="점심의 제왕"
+            android:id="@+id/tv_allo_title" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="10dp"
+            android:textColor="#999"
+            android:text="by 정주원"
+            android:id="@+id/tv_allo_artist" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="50dp"
+        android:layout_height="fill_parent"
+        android:paddingLeft="10dp"
+        android:gravity="center"
+        android:id="@+id/ll_more">
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/more_btn"
+            android:id="@+id/moreBtn" />
+    </LinearLayout>
+</LinearLayout>
+
+<!-- From: file:/Users/baek_uncheon/AndroidStudioProjects/allo/app/src/main/res/layout/layout_by_change_item.xml -->

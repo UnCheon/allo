@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="70dp"
+    android:id="@+id/ll_header_info">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/tv_friend_nick"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_weight="1"
+        >
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/mySongInfoBtn"
+            android:background="@drawable/allo_logo"
+            android:layout_marginLeft="8dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="12dp"
+            android:textColor="#000"
+            android:text="현재 설정된 알로가 없습니다."
+            android:id="@+id/tv_friend_title" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="10dp"
+            android:textColor="#999"
+            android:text="allo"
+            android:id="@+id/tv_friend_artist" />
+
+    </LinearLayout>
+</LinearLayout><!-- From: file:/Users/baek_uncheon/AndroidStudioProjects/allo/app/src/main/res/layout/layout_by_friend_allo_header_info.xml -->

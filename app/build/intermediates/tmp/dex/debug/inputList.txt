@@ -1,0 +1,10 @@
+/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/classes/debug
+/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-aa1151eb089a031f7b39714c24794171e3a78cb2.jar
+/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/UrQA-Client_0.97-08c2ce6db7724c6076c85cc8faf7016ccca92517.jar
+/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/classes-093eb2ec94e857d9216dea869c8724a2c4ecf529.jar
+/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.5-24f28f52b52df051f0ec620570561fb2ab35167c.jar
+/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.4-d331917a41916cd083d1c1edd44b78bbcac01f34.jar
+/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-03936f1f5205988b1c70e4222a4c3dcb04fb7a92.jar
+/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/classes-1dca44db9d00931a8e7d59ca3e51d66c702505bb.jar
+/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/classes-f653588231a116b807d5c5b06b703dd585023fc7.jar
+/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/classes-3cd0bab5aec1a1087d7c6514d8743104ada9e475.jar

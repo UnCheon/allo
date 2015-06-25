@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:id="@+id/ll_store_item">
+    <LinearLayout
+        android:background="@drawable/selector"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:layout_height="80dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="15dp"
+            android:textColor="#777"
+            android:id="@+id/rankTV" />
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/allo_logo"
+            android:id="@+id/iv_allo" />
+
+        <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="wcisgood"
+                android:text="벚꽃 엔딩"
+                android:textSize="13dp"
+                android:textColor="#000"
+                android:id="@+id/songTV" />
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="버스커 버스커(Busker Busker)"
+                android:textSize="10dp"
+                android:textColor="#ccc"
+                android:id="@+id/artistTV" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            android:paddingLeft="10dp"
+            android:gravity="center"
+            android:id="@+id/moreLayout">
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/more_btn"
+                android:id="@+id/moreBtn" />
+            </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
