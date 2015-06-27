@@ -43,6 +43,9 @@ public class MainActivity extends FragmentActivity {
     UCCFragment uCCFragment;
     MyAlloNewFragment myAlloNewFragment;
 
+    FriendAlloListFragment friendAlloListFragment;
+
+
 
     private String[] navItems = {"홈으로 이동", "나만의 알로(UCC)", "알로 설정", "친구들 알로 보기"};
 
@@ -91,6 +94,9 @@ public class MainActivity extends FragmentActivity {
 
         myAlloNewFragment = new MyAlloNewFragment();
         myAlloNewFragment.setContext(this);
+
+        friendAlloListFragment = new FriendAlloListFragment();
+        friendAlloListFragment.setContext(this);
 
     }
 
@@ -194,7 +200,7 @@ public class MainActivity extends FragmentActivity {
                 fragmentReplace(myAlloNewFragment);
                 break;
             case 3:
-                fragmentReplace(myAlloNewFragment);
+                fragmentReplace(friendAlloListFragment);
                 break;
             case 4:
                 fragmentReplace(byFriendAlloFragment);

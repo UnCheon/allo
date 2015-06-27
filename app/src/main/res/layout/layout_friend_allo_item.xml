@@ -1,0 +1,62 @@
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/mySongPlayLayout"
+android:orientation="horizontal"
+android:layout_width="fill_parent"
+android:layout_height="80dp"
+android:padding="10dp">
+<LinearLayout
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1">
+    <ImageButton
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/mySongInfoBtn"
+        android:background="@drawable/allo_logo"
+        android:layout_marginLeft="8dp" />
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="백운천"/>
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:textColor="#000"
+            android:text="현재 설정된 알로가 없습니다."
+            android:id="@+id/tv_title" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="11dp"
+            android:textColor="#aaa"
+            android:text="unknown"
+            android:id="@+id/tv_artist" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="60dp"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:id="@+id/myInfoLayout">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/etc_btn_1"
+            android:id="@+id/moreBtn" />
+    </LinearLayout>
+</LinearLayout>
+    </LinearLayout>

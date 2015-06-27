@@ -162,11 +162,7 @@
                                         android:layout_height="fill_parent"
                                         android:gravity="center">
 
-                                        <ImageView
-                                            android:id="@+id/moreBtn"
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
-                                            android:background="@drawable/etc_btn_1" />
+
                                     </LinearLayout>
                                 </LinearLayout>
 

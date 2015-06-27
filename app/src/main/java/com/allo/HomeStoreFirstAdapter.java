@@ -84,21 +84,33 @@ public class HomeStoreFirstAdapter extends ArrayAdapter<Allo> {
             });
         }
 
-        if (mAllo.getThumbs() != null){
-            DisplayImageOptions options = new DisplayImageOptions.Builder()
+
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
 //                        .showImageOnLoading(R.drawable.ic_stub)
-//                        .showImageForEmptyUri(R.drawable.ic_empty)
-//                        .showImageOnFail(R.drawable.ic_error)
-                    .cacheInMemory(true)
-                    .cacheOnDisk(true)
-                    .considerExifParams(true)
-                    .displayer(new RoundedBitmapDisplayer(20)).build();
-            ImageLoader imageLoader = ImageLoader.getInstance();
-            imageLoader.init(ImageLoaderConfiguration.createDefault(context));
-            imageLoader.displayImage(mAllo.getThumbs(), holder.iv_allo, options);
-        }else{
-            holder.iv_allo.setImageResource(R.drawable.allo_logo);
-        }
+                .showImageForEmptyUri(R.drawable.damienrice)
+                .showImageOnFail(R.drawable.damienrice)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .displayer(new RoundedBitmapDisplayer(20)).build();
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(context));
+        imageLoader.displayImage(mAllo.getThumbs(), holder.iv_allo, options);
+//        if (mAllo.getThumbs() != null){
+//            DisplayImageOptions options = new DisplayImageOptions.Builder()
+////                        .showImageOnLoading(R.drawable.ic_stub)
+//                        .showImageForEmptyUri(R.drawable.damienrice)
+//                        .showImageOnFail(R.drawable.damienrice)
+//                    .cacheInMemory(true)
+//                    .cacheOnDisk(true)
+//                    .considerExifParams(true)
+//                    .displayer(new RoundedBitmapDisplayer(20)).build();
+//            ImageLoader imageLoader = ImageLoader.getInstance();
+//            imageLoader.init(ImageLoaderConfiguration.createDefault(context));
+//            imageLoader.displayImage(mAllo.getThumbs(), holder.iv_allo, options);
+//        }else{
+//            holder.iv_allo.setImageResource(R.drawable.allo_logo);
+//        }
 
 
 

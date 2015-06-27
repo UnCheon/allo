@@ -30,13 +30,6 @@
         <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/classes-f653588231a116b807d5c5b06b703dd585023fc7.jar" />
     </item>
     <item
-        jar="/Users/baek_uncheon/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.5/77bf7cacf9cefe19dc105e5425d2eb1bb5285881/android-async-http-1.4.5.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="77bf7cacf9cefe19dc105e5425d2eb1bb5285881">
-        <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.5-24f28f52b52df051f0ec620570561fb2ab35167c.jar" />
-    </item>
-    <item
         jar="/Users/baek_uncheon/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -44,10 +37,17 @@
         <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-aa1151eb089a031f7b39714c24794171e3a78cb2.jar" />
     </item>
     <item
+        jar="/Users/baek_uncheon/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.5/77bf7cacf9cefe19dc105e5425d2eb1bb5285881/android-async-http-1.4.5.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="77bf7cacf9cefe19dc105e5425d2eb1bb5285881">
+        <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.5-24f28f52b52df051f0ec620570561fb2ab35167c.jar" />
+    </item>
+    <item
         jar="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/allo/ViewPagerIndicator/unspecified/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="4b29b69eec8dc30a96cd7984329d40a5fd99d7ce">
+        sha1="99be3e5166104c5c3a9c73f2174fed7a30f6afc6">
         <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/classes-093eb2ec94e857d9216dea869c8724a2c4ecf529.jar" />
     </item>
     <item

@@ -210,12 +210,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ll_more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) context).moveFragment(3);
-            }
-        });
+//        ll_more.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ((MainActivity) context).moveFragment(3);
+//            }
+//        });
 
         mySongPlayLayout.setOnClickListener(new View.OnClickListener() {
             @Override

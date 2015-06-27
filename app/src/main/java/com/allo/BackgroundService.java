@@ -3,6 +3,7 @@ package com.allo;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.os.IBinder;
 import android.util.Log;
@@ -15,6 +16,8 @@ import com.loopj.android.http.RequestParams;
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 
 public class BackgroundService extends Service{
 
@@ -68,6 +71,21 @@ public class BackgroundService extends Service{
 
 
     public void playAllo(String phone_number){
+
+        String fileName = "free.mp3";
+        AssetFileDescriptor descriptor = null;
+        try {
+            descriptor = getAssets().openFd(fileName);
+            RingbackTone mRingbackTone = RingbackTone.getInstance();
+            mRingbackTone.playRingbackTone(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+        /*
         AsyncHttpClient myClient = new AsyncHttpClient();
         myClient.setTimeout(30000);
 
@@ -125,6 +143,7 @@ public class BackgroundService extends Service{
                 System.out.println(new String(responseBody));
             }
         });
+        */
     }
 
 	@Override

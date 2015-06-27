@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import java.io.FileDescriptor;
 import java.io.IOException;
 
 /**
@@ -65,6 +66,46 @@ public class RingbackTone extends Activity {
         }
 
     }
+
+
+    public void playRingbackTone(FileDescriptor decriptor, long offset, long length){
+
+        if (mMediaPlayer == null)
+            mMediaPlayer = new MediaPlayer();
+
+        if (mMediaPlayer.isPlaying()){
+            mMediaPlayer.pause();
+            mMediaPlayer.stop();
+        }
+
+        mMediaPlayer.reset();
+
+
+        try {
+            mMediaPlayer.setDataSource(decriptor, offset, length);
+            mMediaPlayer.prepareAsync();
+            mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mMediaPlayer.start();
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                sendMessage();
+            }
+        });
+
+
+    }
+
+
 
     public void playRingbackTone(String url){
 

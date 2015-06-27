@@ -98,16 +98,19 @@ public class ChangeAlloActivity extends Activity {
         switch (st_category) {
             case "basic":
                 view = inflater.inflate(R.layout.layout_change_basic_header, null, false);
+                tv_title.setText("기본 allo");
                 break;
             case "time":
                 view = inflater.inflate(R.layout.layout_change_time_header, null, false);
                 btn_time = (Button) view.findViewById(R.id.btn_time);
                 btn_time.setOnClickListener(timeClickListener);
+                tv_title.setText("시간대 알로");
                 break;
             case "friend":
                 view = inflater.inflate(R.layout.layout_change_friend_header, null, false);
                 btn_friend = (Button) view.findViewById(R.id.btn_friend);
                 btn_friend.setOnClickListener(friendClickListener);
+                tv_title.setText("친구별 알로");
                 break;
         }
         lv_allo.addHeaderView(view);
