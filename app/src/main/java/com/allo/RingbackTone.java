@@ -21,29 +21,31 @@ public class RingbackTone extends Activity {
 
     private final String base_url = "http://128.199.97.46:8080";
 
-    private RingbackTone(){}
+    private RingbackTone() {
+    }
 
-    public static RingbackTone getInstance(){
-        if(uniqueInstance == null)
+    public static RingbackTone getInstance() {
+        if (uniqueInstance == null)
             uniqueInstance = new RingbackTone();
 
         return uniqueInstance;
     }
 
-    public void setCurrentAllo(Allo currentAllo){
+    public void setCurrentAllo(Allo currentAllo) {
         this.currentAllo = currentAllo;
     }
-    public Allo getCurrentAllo(){
+
+    public Allo getCurrentAllo() {
         return currentAllo;
     }
 
 
-    public void playRingbackTone(){
+    public void playRingbackTone() {
 
         if (mMediaPlayer == null)
             mMediaPlayer = new MediaPlayer();
 
-        if (mMediaPlayer.isPlaying()){
+        if (mMediaPlayer.isPlaying()) {
             mMediaPlayer.pause();
             mMediaPlayer.stop();
         }
@@ -68,12 +70,12 @@ public class RingbackTone extends Activity {
     }
 
 
-    public void playRingbackTone(FileDescriptor decriptor, long offset, long length){
+    public void playRingbackTone(FileDescriptor decriptor, long offset, long length) {
 
         if (mMediaPlayer == null)
             mMediaPlayer = new MediaPlayer();
 
-        if (mMediaPlayer.isPlaying()){
+        if (mMediaPlayer.isPlaying()) {
             mMediaPlayer.pause();
             mMediaPlayer.stop();
         }
@@ -106,13 +108,12 @@ public class RingbackTone extends Activity {
     }
 
 
-
-    public void playRingbackTone(String url){
+    public void playRingbackTone(String url) {
 
         if (mMediaPlayer == null)
             mMediaPlayer = new MediaPlayer();
 
-        if (mMediaPlayer.isPlaying()){
+        if (mMediaPlayer.isPlaying()) {
             mMediaPlayer.pause();
             mMediaPlayer.stop();
         }
@@ -178,21 +179,18 @@ public class RingbackTone extends Activity {
     }
 
 
-    public void pauseRingBackTone(){
-        if(mMediaPlayer != null){
-            if (mMediaPlayer.isPlaying()){
+    public void pauseRingBackTone() {
+        if (mMediaPlayer != null) {
+            if (mMediaPlayer.isPlaying()) {
                 mMediaPlayer.pause();
             }
         }
     }
 
 
-
-
-
-    public void stopRingbackTone(){
-        if (mMediaPlayer != null){
-            if (mMediaPlayer.isPlaying()){
+    public void stopRingbackTone() {
+        if (mMediaPlayer != null) {
+            if (mMediaPlayer.isPlaying()) {
                 mMediaPlayer.pause();
                 mMediaPlayer.stop();
                 mMediaPlayer.reset();
@@ -211,7 +209,7 @@ public class RingbackTone extends Activity {
         */
     }
 
-    public boolean isPlayingNow(){
+    public boolean isPlayingNow() {
         if (mMediaPlayer != null)
             return mMediaPlayer.isPlaying();
         else

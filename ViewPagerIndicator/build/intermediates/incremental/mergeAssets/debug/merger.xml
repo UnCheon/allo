@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/baek_uncheon/AndroidStudioProjects/allo/ViewPagerIndicator/src/main/assets"/></dataSet><dataSet config="debug"><source path="/Users/baek_uncheon/AndroidStudioProjects/allo/ViewPagerIndicator/src/debug/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/uncheon/AndroidStudioProjects/allo/ViewPagerIndicator/src/main/assets"/></dataSet><dataSet config="debug"><source path="/Users/uncheon/AndroidStudioProjects/allo/ViewPagerIndicator/src/debug/assets"/></dataSet></merger>

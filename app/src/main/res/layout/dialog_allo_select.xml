@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="150dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_gravity="bottom">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30dp">
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <SeekBar android:id="@+id/sb_seekBar"
+                style="@style/seekBarStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="21dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_gravity="center"
+                android:max="100"
+                android:progress="0"
+                android:secondaryProgress="0"
+                android:progressDrawable="@drawable/progress_horizontal_custom"
+                android:thumb="@drawable/seek_thumb_custom" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:gravity="right"
+                android:paddingBottom="10dp">
+                <TextView
+                    android:id="@+id/tv_play_time"
+                    android:layout_gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:text="00:00"/>
+                <TextView
+                    android:layout_gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:text=" / "/>
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:text="00:00"
+                    android:layout_marginRight="15dp"/>
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/allo_red"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_weight="1.5"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+
+                    android:text="Oasis (feat.ZICO)"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_play_pause"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:clickable="true"
+                android:gravity="center_vertical|right"
+                android:orientation="horizontal"
+
+                >
+
+                <ImageView
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:id="@+id/iv_play_pause"
+                    android:padding="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/selector_play"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <Button
+                android:clickable="true"
+                android:background="@drawable/selector_red_border_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/allo_red"
+                android:textSize="18dp"
+                android:text="선택하기"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

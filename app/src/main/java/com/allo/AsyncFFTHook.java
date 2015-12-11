@@ -13,7 +13,10 @@ import ca.uol.aig.fftpack.RealDoubleFFT;
 /**
  * Created by baek_uncheon on 2015. 3. 2..
  */
-public class AsyncFFTHook extends AsyncTask<String, String, String>{
+public abstract class AsyncFFTHook extends AsyncTask<String, String, String> {
+
+    public abstract void offHooked();
+
     Context context;
 
     AudioManager audioManager = null;
@@ -21,13 +24,15 @@ public class AsyncFFTHook extends AsyncTask<String, String, String>{
     Boolean connected = false;
     int fftCounter = 0;
     int phoneState = 1;
+    String phone_state = "standing";
     long prev2Time = 0;
     long next2Time = 0;
     long prevStopTime = 0;
     long nextStopTime = 0;
 
-    int currVol;
+    long i_2s = 0;
 
+    int currVol;
 
 
     private MediaRecorder recorder = null;
@@ -42,20 +47,14 @@ public class AsyncFFTHook extends AsyncTask<String, String, String>{
     private static final int SAMPLE_RATE = 44100;
 
 
-    public AsyncFFTHook(Context context){
+    public AsyncFFTHook(Context context) {
         this.context = context;
     }
 
 
     @Override
-    protected  void onPreExecute(){
-        audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
-        currVol = audioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
-        Log.i("currvol 1 ", ""+currVol);
-        audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL, 0, AudioManager.FLAG_PLAY_SOUND);
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)/2, AudioManager.FLAG_PLAY_SOUND);
-
-
+    protected void onPreExecute() {
+        audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         Log.i("Async", "onPreExecute");
     }
 
@@ -70,11 +69,10 @@ public class AsyncFFTHook extends AsyncTask<String, String, String>{
     }
 
     @Override
-    protected void onProgressUpdate(String... params){
+    protected void onProgressUpdate(String... params) {
         Log.i("Async", "onProgressUpdate");
 
     }
-
 
 
     @Override
@@ -116,13 +114,20 @@ public class AsyncFFTHook extends AsyncTask<String, String, String>{
 
     protected void fftUpdate(double[]... toTransform) {
 
-        if(audioManager.isMicrophoneMute()){
-            Log.i("Mic", "true");
-        }else{
+        if (audioManager.isMicrophoneMute()) {
+//            Log.i("Mic", "true");
+        } else {
             Log.i("Mic", "false");
             audioManager.setMode(AudioManager.MODE_CURRENT);
             audioManager.setMicrophoneMute(true);
 
+        }
+
+        long current_time = System.currentTimeMillis();
+
+        if (phoneState < 1 && i_2s < 10 && current_time - i_2s > 2000) {
+            Log.i("i 2s ", String.valueOf(current_time - i_2s));
+            stopFFT();
         }
 
         int max_downy = 1000;
@@ -148,6 +153,9 @@ public class AsyncFFTHook extends AsyncTask<String, String, String>{
             if (fftCounter < 6) {
                 ++fftCounter;
                 if (max_x > 38 && max_x < 45) { // skt tone start
+
+                    i_2s = System.currentTimeMillis();
+                    Log.i("i_2s skt", String.valueOf(i_2s));
                     phoneState = 2;
                     prev2Time = System.currentTimeMillis();
                 } else if (!((max_x > 8 && max_x < 19) || (max_x > 25 && max_x < 49) || (max_x > 54 && max_x < 58) || (max_x > 68 && max_x < 77) || (max_x > 82 && max_x < 85))) {
@@ -160,14 +168,20 @@ public class AsyncFFTHook extends AsyncTask<String, String, String>{
                     // ring back tone
                     if (!(max_x > 24 && max_x < 35)) {
                         stopFFT();
+                    } else {
+                        i_2s = System.currentTimeMillis();
+                        Log.i("i_2s ps1", String.valueOf(i_2s));
                     }
                 } else if (phoneState == 2) {
                     next2Time = System.currentTimeMillis();
                     if (next2Time - prev2Time > 1900) {
                         phoneState = 1;
                     }
-                    if (!((max_x > 8 && max_x < 19) || (max_x > 25 && max_x < 49) || (max_x > 54 && max_x < 58)|| (max_x > 68 && max_x < 77) || (max_x > 82 && max_x < 85))) {
+                    if (!((max_x > 8 && max_x < 19) || (max_x > 25 && max_x < 49) || (max_x > 54 && max_x < 58) || (max_x > 68 && max_x < 77) || (max_x > 82 && max_x < 85))) {
                         stopFFT();
+                    } else {
+                        i_2s = System.currentTimeMillis();
+                        Log.i("i_2s ps2", String.valueOf(i_2s));
                     }
                 }
             }
@@ -177,29 +191,21 @@ public class AsyncFFTHook extends AsyncTask<String, String, String>{
     private void stopFFT() {
         Log.i("stop audio", "stop audio was called");
 
-
         nextStopTime = System.currentTimeMillis();
         if ((nextStopTime - prevStopTime) < 500) {
             Log.i("stop fft", "connected!!");
             connected = true;
-
+            offHooked();
 
             audioManager.setMode(AudioManager.MODE_CURRENT);
             audioManager.setMicrophoneMute(false);
 
-
-            Log.i("currVol 3 ", ""+audioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL));
-            audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL, currVol, AudioManager.FLAG_PLAY_SOUND);
-            Log.i("currVol 4 ", ""+audioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL));
-
-            RingbackTone mRingbackTone = RingbackTone.getInstance();
-            mRingbackTone.stopRingbackTone();
-
-            if(recorder != null)
+            if (recorder != null)
                 recorder.release();
 
-            if(audioRecord != null)
+            if (audioRecord != null)
                 audioRecord.release();
+
 
         } else {
             prevStopTime = System.currentTimeMillis();

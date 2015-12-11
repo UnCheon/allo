@@ -1,73 +1,127 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.allo.UCCFragment">
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:background="#000"
+    android:padding="5dp">
+
+
+    <LinearLayout
+        android:background="@drawable/radius_white"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="60dp">
+
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="60dp">
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:gravity="center"
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="15dp">
+                android:baselineAligned="false">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/menu_50"
-                        android:layout_gravity="center_vertical"
-                        android:id="@+id/iv_side_menu"/>
-
-                    <TextView
-                        android:layout_marginLeft="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="나만의 알로 만들기"
-                        android:textColor="#000"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:id="@+id/nameTV"
-                        android:layout_gravity="center_vertical" />
-                </LinearLayout>
-
-
-
-
+                <ImageView
+                    android:id="@+id/iv_side_menu"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="15dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/selector_top_munu" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:text="나만의 알로 만들기"
-                    android:textSize="40sp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:text="녹음이나 mp3파일 업로드를 통해 직접 나만의 알로를 만들어 보세요. 친구에게 선물하는 것도 가능합니다.
-                    *나만의 알로만들기는 이용권이 필요하지 않습니다. "/>
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="시작하기"
-                    android:id="@+id/btn_start_ucc"/>
-            </LinearLayout>
-        </LinearLayout>
-    </FrameLayout>
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_marginRight="50dp">
 
-</LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="나만의 알로 만들기"
+                    android:textColor="#000"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="10dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#ddd" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingTop="0dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="나만의 알로 만들기"
+                    android:textColor="#f91f30"
+                    android:textSize="22dp"
+                    android:layout_marginBottom="10dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="원하는 알로를 직접 만들어보세요."
+                    android:textColor="#000"
+                    android:textSize="14dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textAlignment="center" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내가 만든 알로는 무료 스토어에 등록할 수 있습니다."
+                    android:textColor="#000"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"
+                    android:textAlignment="center" />
+
+                <ImageView
+                    android:layout_width="124dp"
+                    android:layout_height="217dp"
+                    android:id="@+id/imageView"
+                    android:background="@drawable/record_red_big"
+                    android:layout_marginTop="30dp" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="시작하기"
+                android:id="@+id/btn_start_ucc"
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:layout_marginTop="30dp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:background="@drawable/selector_red_fill_btn" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

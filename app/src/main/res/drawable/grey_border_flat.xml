@@ -2,11 +2,13 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
     <item>
         <shape android:shape="rectangle">
-            <gradient
-                android:angle="90"
-                android:startColor="#ccc"
-                android:centerColor="@android:color/transparent"
-                android:centerX="0.01" />
+            <solid android:color="#ffffffff" />
+            <stroke android:color="#ccc" android:width="3px" />
+            <!--<gradient-->
+                <!--android:angle="90"-->
+                <!--android:startColor="#ccc"-->
+                <!--android:centerColor="@android:color/transparent"-->
+                <!--android:centerX="0.01" />-->
         </shape>
     </item>
 </layer-list>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="500dp"
+    android:layout_gravity="bottom"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/mark_start"
+
+            android:layout_width="wrap_content"
+            android:layout_height="31dip"
+            android:clickable="true"
+            android:gravity="center"
+            android:labelFor="@+id/starttext"
+            android:textColor="#000"
+            android:textSize="13dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="현재 선택된 구간   "
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/starttext"
+            android:layout_width="70dip"
+            android:layout_height="31dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:editable="false"
+            android:focusable="false"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/mark_end"
+            android:layout_width="wrap_content"
+            android:layout_height="31dip"
+            android:focusable="false"
+            android:gravity="center"
+            android:text="∼"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/endtext"
+            android:layout_width="70dip"
+            android:layout_height="31dip"
+            android:layout_marginLeft="10dip"
+            android:editable="false"
+            android:focusable="false"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:background="@color/allo_red"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="4.5"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_allo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/allo" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1.5"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+
+                    android:text="Oasis (feat.ZICO)"
+                    android:textColor="#fff"
+                    android:textSize="18dp"
+
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_artist"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+
+                    android:text="CURSH (크러쉬)"
+                    android:textColor="#ccc"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_play_pause"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:clickable="true"
+                android:gravity="center_vertical|right"
+                android:orientation="horizontal"
+
+                >
+
+                <ImageView
+                    android:id="@+id/iv_play_pause"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="5dp"
+                    android:clickable="true"
+                    android:padding="15dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/selector_play" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:orientation="vertical">
+
+
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1">
+
+                    <!--ImageView
+                     android:id="@+id/bkgnd"
+                     android:layout_width="fill_parent"
+                     android:layout_height="fill_parent"
+                     android:scaleType="centerCrop"
+                     android:src="@drawable/bkgnd"-->
+
+
+                    <ringdroid.WaveformView
+
+                        android:id="@+id/waveform"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="#fff" android:layout_marginBottom="10dp"/>
+
+                    <ringdroid.MarkerView
+                        android:id="@+id/startmarker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/part_start_music_small"
+                        android:nextFocusDown="@+id/endmarker"/>
+
+                    <ringdroid.MarkerView
+                        android:id="@+id/endmarker"
+                        android:layout_width="5dp"
+                        android:layout_height="3dp"
+                        android:nextFocusDown="@+id/info"
+                        android:nextFocusUp="@+id/startmarker"
+
+                        />
+
+                </RelativeLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ZoomControls
+                    android:id="@+id/zoomInOut"
+                    android:gravity="center"
+                    android:layout_margin="0dp"
+                    android:padding="0dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                </ZoomControls>
+                </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_crop"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_red_fill_btn"
+                android:clickable="true"
+                android:text="선택하기"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

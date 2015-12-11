@@ -1,6 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000" android:padding="5dp">
+    android:background="#000"
+    android:padding="5dp">
 
 
     <LinearLayout
@@ -16,64 +18,50 @@
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="fill_parent"
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp">
+                android:gravity="center"
+                android:id="@+id/ll_back"
+                android:baselineAligned="false">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/back_btn"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/iv_back"/>
-
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="친구 목록"
-                    android:textColor="#000"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_vertical" />
+                    android:id="@+id/iv_back"
+                    android:layout_width="12dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/back_red" />
             </LinearLayout>
 
             <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:baselineAligned="false"
-                android:gravity="center_vertical|right"
-                android:orientation="horizontal"
-                android:paddingRight="15dp">
+                android:gravity="center_horizontal"
+                android:layout_marginRight="50dp">
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="선물할 친구를 선택하세요"
+                    android:textColor="#000"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
                     android:layout_gravity="center_vertical"
-                    android:background="@drawable/allo_logo" />
+                    android:paddingLeft="10dp" />
             </LinearLayout>
 
         </LinearLayout>
+
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="#ccc"/>
+            android:background="#ddd" />
 
-        <LinearLayout
-            android:orientation="vertical"
+        <ListView
+            android:id="@+id/lv_friend"
+            android:listSelector="@drawable/selector"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
-
-            <ListView
-                android:layout_weight="1"
-                android:id="@+id/lv_friend"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-            </ListView>
-
-        </LinearLayout>
+        </ListView>
     </LinearLayout>
 </RelativeLayout>

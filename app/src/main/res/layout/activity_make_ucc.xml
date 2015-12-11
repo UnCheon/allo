@@ -1,0 +1,176 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    android:padding="5dp">
+
+
+    <LinearLayout
+        android:background="@drawable/radius_white"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:baselineAligned="false">
+
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/iv_back"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:padding="13dp"
+                    android:src="@drawable/selector_back" />
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv_menu_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="나만의 알로 만들기"
+                    android:textColor="#000"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:orientation="horizontal"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:baselineAligned="false"
+                android:paddingRight="10dp">
+
+                <ImageView
+                    android:id="@+id/btn_make_allo"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:padding="5dp"
+                    android:src="@drawable/selector_complete" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#ddd" />
+
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_record"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingTop="0dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="대기중..."
+                    android:textColor="#666"
+                    android:textSize="20dp"
+                    android:id="@+id/tv_status"
+                    android:layout_marginBottom="15dp" />
+
+                <ImageView
+                    android:layout_width="62dp"
+                    android:layout_height="108dp"
+                    android:id="@+id/imageView"
+                    android:background="@drawable/record_red_big"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00"
+                    android:textColor="#000"
+                    android:id="@+id/tv_time"
+                    android:textSize="24dp"
+                    android:layout_marginTop="27dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="녹음하기"
+                android:id="@+id/btn_record"
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:layout_marginTop="27dp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:background="@drawable/selector_red_fill_btn" />
+
+            <Button
+
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="미리 듣기"
+                android:id="@+id/btn_play"
+                android:textColor="#f91f30"
+                android:textSize="18dp"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:background="@drawable/selector_red_border_btn" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="MP3 가져오기"
+                android:id="@+id/btn_get_mp3"
+                android:textColor="#f91f30"
+                android:textSize="18dp"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:background="@drawable/selector_red_border_btn" />
+
+        </LinearLayout>
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:listSelector="@drawable/selector"
+                android:id="@+id/lv_file_list"></ListView>
+        </FrameLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

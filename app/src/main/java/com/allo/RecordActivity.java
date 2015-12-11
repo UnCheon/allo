@@ -1,65 +1,51 @@
 package com.allo;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Message;
 import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
-import java.io.File;
 import java.util.ArrayList;
-
-import skd.androidrecording.audio.AudioPlaybackManager;
-import skd.androidrecording.audio.AudioRecordingHandler;
-import skd.androidrecording.audio.AudioRecordingThread;
-import skd.androidrecording.video.PlaybackHandler;
-import skd.androidrecording.visualizer.renderer.BarGraphRenderer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class RecordActivity extends Activity {
 
-    LinearLayout ll_back;
+    ImageView iv_back;
 
-    TextView tv_title;
+    TextView tv_menu_title;
 
     LinearLayout ll_record;
     TextView tv_status;
-    TextView tv_play;
-    TextView tv_record;
+    Button btn_play;
+    Button btn_record;
     TextView tv_time;
-    TextView btn_get_mp3;
-    TextView btn_make_allo;
-    ProgressBar pb_play;
+    Button btn_get_mp3;
+    ImageView btn_make_allo;
+    //    ProgressBar pb_play;
     public volatile Thread th_progressbar_play;
     public int CurrentPosition = 0;
     public int i_total;
@@ -72,20 +58,40 @@ public class RecordActivity extends Activity {
     MediaPlayer player;
     MediaRecorder recorder;
 
+    Timer timer = null;
+    final Handler myHandler = new Handler();
+    int i_progress_time = 0;
+
     private boolean is_playing = false, is_recoding = false, is_temp = false;
 
     private String RECORD_FILEPATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/allo/temp.3gp";
 
-    private final String ST_TITLE_RECORD = "녹음하기";
+    private final String ST_TITLE_RECORD = "나만의 알로 만들기";
     private final String ST_TITLE_FILE = "MP3파일 업로드하기";
 
+    private final String ST_RECORDING = "녹음중..";
+    private final String ST_STANDING = "대기중";
+    private final String ST_PLAYING = "재생중..";
+
     Allo allo_temp;
+
+    Context context;
+
+    Tracker mTracker;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_record);
+
+        context = this;
+
+        setContentView(R.layout.activity_make_ucc);
+
+        AnalyticsApplication application = (AnalyticsApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+        mTracker.setScreenName("RecordActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
         setLayout();
         setListener();
@@ -94,45 +100,50 @@ public class RecordActivity extends Activity {
         lv_file_list.setAdapter(adapter);
 
         allo_temp = new Allo();
-
     }
 
     private void setLayout() {
 
-        ll_back = (LinearLayout) findViewById(R.id.ll_back);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
 
-        tv_title = (TextView) findViewById(R.id.tv_title);
+        tv_menu_title = (TextView) findViewById(R.id.tv_menu_title);
 
         ll_record = (LinearLayout) findViewById(R.id.ll_record);
-        tv_status = (TextView)findViewById(R.id.tv_status);
-        tv_play = (TextView)findViewById(R.id.tv_play);
-        tv_record = (TextView)findViewById(R.id.tv_record);
+        tv_status = (TextView) findViewById(R.id.tv_status);
+        btn_play = (Button) findViewById(R.id.btn_play);
+        btn_record = (Button) findViewById(R.id.btn_record);
         tv_time = (TextView) findViewById(R.id.tv_time);
         btn_get_mp3 = (Button) findViewById(R.id.btn_get_mp3);
-        btn_make_allo = (Button) findViewById(R.id.btn_make_allo);
-        pb_play = (ProgressBar) findViewById(R.id.pb_play);
+        btn_make_allo = (ImageView) findViewById(R.id.btn_make_allo);
+//        pb_play = (ProgressBar) findViewById(R.id.pb_play);
 
         lv_file_list = (ListView) findViewById(R.id.lv_file_list);
     }
 
+
     private void setListener() {
-        ll_back.setOnClickListener(new View.OnClickListener() {
+        iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickBack();
+                if (lv_file_list.getVisibility() == View.VISIBLE)
+                    backToRecord();
+                else
+                    clickBack();
             }
         });
 
-        tv_record.setOnClickListener(new View.OnClickListener() {
+        btn_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mTracker.send(new HitBuilders.EventBuilder().setCategory("Record").setAction("btn_record click").build());
                 clickRecord();
             }
         });
 
-        tv_play.setOnClickListener(new View.OnClickListener() {
+        btn_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mTracker.send(new HitBuilders.EventBuilder().setCategory("Record").setAction("btn_play click").build());
                 clickPlay();
             }
         });
@@ -140,6 +151,7 @@ public class RecordActivity extends Activity {
         btn_get_mp3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mTracker.send(new HitBuilders.EventBuilder().setCategory("Record").setAction("btn_get_mp3 click").build());
                 clickGetMp3();
             }
         });
@@ -147,6 +159,7 @@ public class RecordActivity extends Activity {
         btn_make_allo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mTracker.send(new HitBuilders.EventBuilder().setCategory("Record").setAction("btn_make_allo click").build());
                 clickMakeAllo();
             }
         });
@@ -154,69 +167,115 @@ public class RecordActivity extends Activity {
         lv_file_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                is_temp = true;
-                allo_temp = al_allo_list.get(position);
-                Log.i("allo_title", allo_temp.getTitle());
-                Log.i("allo_artist", allo_temp.getArtist());
-                Log.i("allo_url", allo_temp.getURL());
+                mTracker.send(new HitBuilders.EventBuilder().setCategory("Record").setAction("mp3_list click").build());
+                lv_file_list.setEnabled(false);
+                PlayAllo.getInstance().setType("RECORD");
+                PlayAllo.getInstance().setRecordActivity(RecordActivity.this);
+                PlayAllo.getInstance().setAlloPrepare(al_allo_list.get(position));
+            }
+        });
 
+        tv_status.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
-                backToRecord();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String status = tv_status.getText().toString();
+                switch (status) {
+                    case ST_STANDING:
+                        btn_play.setEnabled(true);
+                        btn_record.setEnabled(true);
+                        btn_get_mp3.setEnabled(true);
+                        break;
+                    case ST_RECORDING:
+                        btn_play.setEnabled(false);
+                        btn_record.setEnabled(true);
+                        btn_get_mp3.setEnabled(false);
+                        break;
+                    case ST_PLAYING:
+                        btn_play.setEnabled(true);
+                        btn_record.setEnabled(false);
+                        btn_get_mp3.setEnabled(false);
+                        break;
+                }
             }
         });
 
     }
 
-    private void clickRecord(){
-        if (is_recoding){
+    public void onSelectAlloFinish(Allo allo) {
+        is_temp = true;
+        allo_temp = allo;
+        backToRecord();
+    }
+
+    private void clickRecord() {
+        if (is_recoding) {
             stopRecord();
             is_recoding = false;
             is_temp = true;
 
-            tv_record.setText("다시 녹음하기");
+            btn_record.setText("다시 녹음하기");
+            tv_status.setText(ST_STANDING);
 
-            allo_temp.setTitle("녹음파일");
+            allo_temp.setTitle("");
             allo_temp.setArtist("");
             allo_temp.setImage("");
             allo_temp.setURL(RECORD_FILEPATH);
+            MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+            mmr.setDataSource(RECORD_FILEPATH);
+
+            allo_temp.setDuration(Integer.parseInt(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)));
             Log.i("record", "stop record");
 
-        }else{
+        } else {
             startRecord();
             is_recoding = true;
-            tv_record.setText("정지하기");
+            btn_record.setText("정지하기");
+            tv_status.setText(ST_RECORDING);
             Log.i("record", "start record");
         }
     }
 
-    private void clickPlay(){
+    private void clickPlay() {
         if (!is_temp) {
             Log.i("record", "temp is not exist");
             return;
         }
 
-        if (is_playing){
+        if (is_playing) {
             is_playing = false;
             stopRecordFile();
-            tv_play.setText("미리듣기");
+            tv_status.setText(ST_STANDING);
+            btn_play.setText("미리듣기");
             Log.i("record", "stop record file");
 
-        }else{
+        } else {
             is_playing = true;
             playRecordFile();
-            tv_play.setText("정지하기");
+            tv_status.setText(ST_PLAYING);
+            btn_play.setText("정지하기");
             Log.i("record", "start record file");
         }
     }
 
-    private void clickGetMp3(){
+    private void clickGetMp3() {
         ll_record.setVisibility(View.GONE);
         lv_file_list.setVisibility(View.VISIBLE);
-        tv_title.setText(ST_TITLE_FILE);
+        btn_make_allo.setVisibility(View.INVISIBLE);
+        tv_menu_title.setText(ST_TITLE_FILE);
     }
 
-    private void startRecord(){
-        if (recorder != null){
+    private void startRecord() {
+        if (recorder != null) {
             recorder.stop();
             recorder.reset();
             recorder.release();
@@ -230,18 +289,18 @@ public class RecordActivity extends Activity {
 
         recorder.setOutputFile(RECORD_FILEPATH);
 
-        try{
+        try {
             recorder.prepare();
             recorder.start();
             i_total = 180000;
-            startProgressBarThread();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
+        startTimer();
 
     }
 
-    private void stopRecord(){
+    private void stopRecord() {
         if (recorder == null)
             return;
 
@@ -249,13 +308,13 @@ public class RecordActivity extends Activity {
         recorder.reset();
         recorder.release();
         recorder = null;
-        stopProgressBarThread();
 
+        stopTimer();
 
 
     }
 
-    private void playRecordFile(){
+    private void playRecordFile() {
         if (player != null) {
             player.stop();
             player.reset();
@@ -271,17 +330,20 @@ public class RecordActivity extends Activity {
             }
         });
 
-        try{
+        try {
             player.setDataSource(allo_temp.getURL());
             player.prepare();
             player.start();
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
         i_total = player.getDuration();
-        startProgressBarThread();
+
+        startTimer();
+
     }
-    private void stopRecordFile(){
+
+    private void stopRecordFile() {
         if (player == null)
             return;
 
@@ -291,101 +353,71 @@ public class RecordActivity extends Activity {
         player = null;
 
         is_playing = false;
-        stopProgressBarThread();
+
+        stopTimer();
+
 
     }
 
-    public synchronized void startProgressBarThread(){
-        if (th_progressbar_play == null) {
-            th_progressbar_play = new Thread(null, backgroundThread, "startOrigressBarThread");
-            CurrentPosition = 0;
+    private void startTimer() {
 
-            pb_play.setMax(i_total);
-            th_progressbar_play.start();
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
         }
+
+
+        timer = new Timer();
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                i_progress_time = i_progress_time + 1;
+                Log.i("timer", String.valueOf(i_progress_time));
+                setTextProgressTime();
+            }
+        }, 1000, 1000);
+
     }
 
-    public synchronized void stopProgressBarThread(){
-        CurrentPosition = 0;
-        pb_play.setProgress(0);
-        setTimeText();
 
-        if (th_progressbar_play != null) {
-            Thread tmpThread = th_progressbar_play;
-            th_progressbar_play = null;
-            tmpThread.interrupt();
-        }
+    private void stopTimer() {
+        i_progress_time = 0;
+        setTextProgressTime();
+        if (timer != null)
+            timer.cancel();
     }
 
-    private Runnable backgroundThread = new Runnable() {
-        @Override
+
+    private void setTextProgressTime() {
+        myHandler.post(myRunnable);
+    }
+
+    final Runnable myRunnable = new Runnable() {
         public void run() {
-            if (Thread.currentThread() == th_progressbar_play){
-                CurrentPosition = 0;
-                while (CurrentPosition < i_total) {
-                    try{
-                        progressBarHandler.sendMessage(progressBarHandler.obtainMessage());
-                        Thread.sleep(100);
-                    }catch (final InterruptedException e) {
-                        return;
-                    }catch (final Exception e) {
-
-                    }
-                }
-            }
+            AlloUtils alloUtils = AlloUtils.getInstance();
+            String st_time = alloUtils.getSecToTime(i_progress_time);
+            tv_time.setText(st_time);
         }
     };
 
-    Handler progressBarHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg){
-            CurrentPosition = CurrentPosition + 100;
-            pb_play.setProgress(CurrentPosition);
-            if (CurrentPosition%1000 == 0){
-                setTimeText();
 
-            }
-            if (CurrentPosition > i_total | CurrentPosition == i_total){
-                stopProgressBarThread();
-            }
-        }
-    };
-
-    private void setTimeText(){
-        String st_time;
-        if (CurrentPosition == 0){
-            st_time = "00:00";
-        }else{
-            int i_total_sec = CurrentPosition/1000;
-            int i_min = i_total_sec/60;
-            int i_sec = i_total_sec%60;
-            String st_min = String.valueOf(i_min);
-            String st_sec = String.valueOf(i_sec);
-
-            if (i_min/10 == 0){
-                st_min = "0"+st_min;
-            }
-            if (i_sec/10 == 0){
-                st_sec = "0"+st_sec;
-            }
-            st_time = st_min+":"+st_sec;
-        }
-        tv_time.setText(st_time);
-    }
-
-    private void setAlloList(){
+    private void setAlloList() {
         al_allo_list = new ArrayList<>();
+
 
         Cursor c = getApplication().getContentResolver().query(
                 MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                new String[] {
+                new String[]{
                         MediaStore.Audio.Media._ID,
                         MediaStore.Audio.Media.DATA,
                         MediaStore.Audio.Media.ARTIST,
                         MediaStore.Audio.Media.ALBUM,
                         MediaStore.Audio.Media.DISPLAY_NAME,
+                        MediaStore.Audio.Media.DURATION,
 
-                        }, "1=1", null, null);
+
+                }, "1=1", null, null);
 
         Cursor c_album = getApplication().getContentResolver().query(
                 MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI,
@@ -394,20 +426,21 @@ public class RecordActivity extends Activity {
                         MediaStore.Audio.Albums.ALBUM_ART
                 }, null, null, null);
 
-        while (c.moveToNext()){
+        while (c.moveToNext()) {
             c_album.moveToNext();
 
-            Allo allo= new Allo();
+            Allo allo = new Allo();
             allo.setTitle(c.getString(4));
             allo.setURL(c.getString(1));
             allo.setArtist(c.getString(2));
-            allo.setIsPlaying(false);
+            allo.setDuration(c.getInt(5));
+            allo.setStartPoint(0);
             al_allo_list.add(allo);
         }
     }
 
-    private void clickMakeAllo(){
-        if (allo_temp.getTitle() == null){
+    private void clickMakeAllo() {
+        if (allo_temp.getURL() == null) {
             Toast.makeText(getApplicationContext(), "알로를 녹음하거나 파일을 가져온 후 클릭해주세요.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -419,18 +452,32 @@ public class RecordActivity extends Activity {
 
 
     private void backToRecord() {
+
         ll_record.setVisibility(View.VISIBLE);
         lv_file_list.setVisibility(View.GONE);
-        tv_title.setText(ST_TITLE_RECORD);
+        btn_make_allo.setVisibility(View.VISIBLE);
+        tv_menu_title.setText(ST_TITLE_RECORD);
+    }
+
+    public void onPrepared(Allo allo){
+        AlloRecordDialog alloRecordDialog = new AlloRecordDialog(this);
+        alloRecordDialog.setAllo(allo);
+        alloRecordDialog.show();
+        lv_file_list.setEnabled(true);
+    }
+
+    public void onPrepareFailed(){
+        Log.i("Record Activity", "onPreparedFailed");
+        Toast.makeText(this, this.getResources().getString(R.string.prepare_fail), Toast.LENGTH_SHORT).show();
+        lv_file_list.setEnabled(true);
     }
 
 
     @Override
     public void onBackPressed() {
-        String st_title = tv_title.getText().toString();
-        if (st_title.equals(ST_TITLE_FILE))
+        if (lv_file_list.getVisibility() == View.VISIBLE)
             backToRecord();
-        else if (st_title.equals(ST_TITLE_RECORD))
+        else
             clickBack();
     }
 
@@ -439,4 +486,21 @@ public class RecordActivity extends Activity {
         stopRecordFile();
         finish();
     }
+
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
+
+        if (timer != null)
+            timer.cancel();
+    }
+
 }

@@ -1,8 +1,39 @@
-<resources>
+<!--?xml version="1.0" encoding="utf-8"?-->
 
+<resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="TestTheme" parent="AppTheme">
+
+        <item name="numberPickerStyle">@style/NPWidget.Holo.NumberPicker</item>
+
+    </style>
+
+
+    <style name="AlloClickDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/AlloClickDialogAnimation</item>
+    </style>
+
+    <style name="AlloClickDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+
+    <style name="full_screen_dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="seekBarStyle" parent="@android:style/Widget.SeekBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:minHeight">1dip</item>
+        <item name="android:maxHeight">1dip</item>
+    </style>
 </resources>

@@ -22,4 +22,4 @@
     <!--item android:state_activated="true" android:color="@color/vpi__bright_foreground_holo_dark"/-->
     <item android:color="@color/vpi__bright_foreground_holo_dark"/> <!-- not selected -->
 </selector>
-<!-- From: file:/Users/baek_uncheon/AndroidStudioProjects/allo/ViewPagerIndicator/src/main/res/color/vpi__dark_theme.xml -->
+<!-- From: file:/Users/uncheon/AndroidStudioProjects/allo/ViewPagerIndicator/src/main/res/color/vpi__dark_theme.xml -->

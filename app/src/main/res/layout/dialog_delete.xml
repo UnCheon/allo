@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="삭제"
+        android:id="@+id/btn_delete"
+        android:textColor="#f91f30"
+        android:textSize="18dp"
+        android:clickable="true"
+        android:background="@drawable/selector_red_border_btn"
+        />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="취소"
+        android:id="@+id/btn_cancel"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:background="@drawable/selector_red_fill_btn" />
+</LinearLayout>

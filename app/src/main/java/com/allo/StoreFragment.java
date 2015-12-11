@@ -1,377 +1,234 @@
 package com.allo;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.urqa.clientinterface.URQAController;
+import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
+import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.PersistentCookieStore;
+import com.loopj.android.http.RequestParams;
 
-import java.io.IOException;
-import java.io.InputStream;
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
- * Created by baek_uncheon on 2015. 3. 26..
+ * Created by florentchampigny on 24/04/15.
  */
-public class StoreFragment extends Fragment{
-    public ViewPager mPager;
-    FrameLayout frameLayout;
-    Context mContext;
-
-    ImageView iv_side_menu;
-
-    ListView rankLv;
-    ListView newLv;
-
-    ArrayList<Allo> allo_rank_array;
-//    ListView searchLv;
-    LinearLayout searchLayout;
-
-    TextView currentBtn;
-    TextView popularBtn;
-    TextView newBtn;
-    TextView searchBtn;
-
-    TextView playSongTV;
-    ImageView imageView;
-
-    LinearLayout playSongLayout;
-    ImageButton playSongPlayBtn;
+public class StoreFragment extends Fragment {
 
 
-    Button btn_fee_current;
-    Button btn_charged;
-    Button btn_free;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    MainFragment mainFragment;
+    Context context;
+    String st_type;
+    ArrayList<Allo> ar_allo;
+    boolean is_scrolled = false;
 
-    String st_url;
 
-    Allo currentAllo;
+    private int scrollY = 0;
 
-    public StoreFragment(){
-
+    public static StoreFragment newInstance() {
+        return new StoreFragment();
     }
 
-    public void setContext(Context context){this.mContext = context;}
+    public void setMainFragment(MainFragment mainFragment) {
+        this.mainFragment = mainFragment;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public void setType(String st_type) {
+        this.st_type = st_type;
+    }
+
+    public void setScrollY(int scrollY_){
+        Log.i("srolled set : ",scrollY_+"  zzz");
+        if (scrollY_ > 380){
+            scrollY = 380;
+        }else{
+            scrollY = scrollY_;
+        }
+    }
+
+    public int getScrollY() { return this.scrollY; }
+
+
+
+
 
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_store, container, false);
-        URQAController.InitializeAndStartSession(mContext, "BEAC46A7");
-
-
-        currentAllo = new Allo();
-        currentAllo.setRingTitle("none");
-        setLayout(view);
-        setListener();
-
-        btnCharged();
-
-        return view;
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_recyclerview, container, false);
     }
 
-    private void setLayout(View view){
-        iv_side_menu = (ImageView) view.findViewById(R.id.iv_side_menu);
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        View v = mainFragment.getView();
+        final LinearLayout linearLayout = (LinearLayout) v.findViewById(R.id.ll_cash);
+        final ViewPager viewPager = (ViewPager) v.findViewById(R.id.vp_noti);
 
-        btn_charged = (Button) view.findViewById(R.id.btn_charged);
-        btn_free = (Button) view.findViewById(R.id.btn_free);
-
-        playSongLayout = (LinearLayout)view.findViewById(R.id.playSongLayout);
-        frameLayout = (FrameLayout)view.findViewById(R.id.frameLayout);
-        rankLv = (ListView)view.findViewById(R.id.rankLv);
-        newLv = (ListView)view.findViewById(R.id.newLv);
-        searchLayout = (LinearLayout)view.findViewById(R.id.searchLayout);
-
-        popularBtn = (TextView)view.findViewById(R.id.popularBtn);
-        newBtn = (TextView)view.findViewById(R.id.newBtn);
-        searchBtn = (TextView)view.findViewById(R.id.searchBtn);
-
-        playSongTV = (TextView)view.findViewById(R.id.playSongTV);
-        imageView = (ImageView)view.findViewById(R.id.imageView);
-        playSongPlayBtn = (ImageButton)view.findViewById(R.id.playSongPlayBtn);
-
-        currentBtn = popularBtn;
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
 
 
-    }
+        Log.i("rec", "start  star tat ");
 
-    private void setListener(){
-
-        iv_side_menu.setOnClickListener(new View.OnClickListener() {
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onClick(View v) {
-                ((MainActivity)mContext).openDrawerLayout();
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                scrollY += dy;
+                if (scrollY < 0) scrollY = 0;
+
+                if (scrollY < 190) {
+//                    Log.i("baekun", "true : " + scrollY);
+                    viewPager.setVisibility(View.VISIBLE);
+                    linearLayout.setVisibility(View.VISIBLE);
+                } else if (scrollY > 190) {
+//                    Log.i("baekun", "false : " + scrollY);
+                    viewPager.setVisibility(View.GONE);
+                    linearLayout.setVisibility(View.GONE);
+                }
+
+                SingleToneData.getInstance().setIsScrolled(true);
+
+
+
+                Log.i("scroll y", scrollY+"");
             }
         });
 
-        btn_charged.setOnClickListener(feeListener);
-        btn_free.setOnClickListener(feeListener);
+        getStoreAlloList();
 
-        popularBtn.setOnClickListener(categoryListener);
-        newBtn.setOnClickListener(categoryListener);
-        searchBtn.setOnClickListener(categoryListener);
-        playSongLayout.setOnClickListener(playListener);
-        playSongPlayBtn.setOnClickListener(playListener);
+
     }
 
+    private void getStoreAlloList() {
+        AsyncHttpClient myClient;
 
-    View.OnClickListener categoryListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.popularBtn:
-                    if (currentBtn != popularBtn) {
-                        popularBtn();
-                        getAlloStoreList();
-                    }
-                    break;
-                case R.id.newBtn:
-                    if (currentBtn != newBtn) {
-                        newBtn();
-                        getAlloStoreList();
-                    }
-                    break;
-                case R.id.searchBtn:
-                    if (currentBtn != searchBtn)
-                        searchBtn();
-                    break;
-            }
+        myClient = new AsyncHttpClient();
+        myClient.setTimeout(SingleToneData.getInstance().getTimeOutValue());
+        PersistentCookieStore myCookieStore = new PersistentCookieStore(context);
+        myClient.setCookieStore(myCookieStore);
+
+        String url = "";
+
+        switch (st_type) {
+            case "popular_ucc":
+                url = context.getString(R.string.url_popular_ucc);
+                break;
+            case "new_ucc":
+                url = context.getString(R.string.url_new_ucc);
+                break;
+            case "popular_music":
+                url = context.getString(R.string.url_popular_music);
+                break;
+            case "new_music":
+                url = context.getString(R.string.url_new_music);
+                break;
+            default:
+                url = context.getString(R.string.url_popular_ucc);
+                break;
         }
-    };
 
-    View.OnClickListener feeListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.btn_charged:
-                    btnCharged();
-                    break;
-                case R.id.btn_free:
-                    btnFree();
-                    break;
+        RequestParams params = new RequestParams();
+        LoginUtils loginUtils = new LoginUtils(context);
 
-            }
-            popularBtn();
-            getAlloStoreList();
-        }
-    };
-
-    private void btnCharged(){
-        if (btn_fee_current == btn_charged)
-            return;
-        btn_fee_current = btn_charged;
-        btn_charged.setBackgroundColor(Color.parseColor("#f91e2f"));
-        btn_free.setBackgroundColor(Color.parseColor("#ffffff"));
-    }
-
-    private void btnFree(){
-        if (btn_fee_current == btn_free)
-            return;
-        btn_fee_current = btn_free;
-        btn_charged.setBackgroundColor(Color.parseColor("#ffffff"));
-        btn_free.setBackgroundColor(Color.parseColor("#f91e2f"));
-    }
-
-    private void popularBtn(){
-        currentBtn = popularBtn;
-        popularBtn.setBackgroundResource(R.drawable.border_bottom_red);
-        popularBtn.setTextColor(Color.parseColor("#f91e2f"));
-        rankLv.setVisibility(TextView.VISIBLE);
-
-        newBtn.setBackgroundResource(R.drawable.grey_border_flat);
-        newBtn.setTextColor(Color.parseColor("#000000"));
-//        newLv.setVisibility(TextView.GONE);
-
-        searchBtn.setBackgroundResource(R.drawable.grey_border_flat);
-        searchBtn.setTextColor(Color.parseColor("#000000"));
-        searchLayout.setVisibility(TextView.GONE);
-    }
-
-    private void newBtn(){
-        currentBtn = newBtn;
-        popularBtn.setBackgroundResource(R.drawable.grey_border_flat);
-        popularBtn.setTextColor(Color.parseColor("#000000"));
-//        rankLv.setVisibility(TextView.GONE);
-
-        newBtn.setBackgroundResource(R.drawable.border_bottom_red);
-        newBtn.setTextColor(Color.parseColor("#f91e2f"));
-        rankLv.setVisibility(TextView.VISIBLE);
-
-        searchBtn.setBackgroundResource(R.drawable.grey_border_flat);
-        searchBtn.setTextColor(Color.parseColor("#000000"));
-        searchLayout.setVisibility(TextView.GONE);
-    }
-
-    private void searchBtn(){
-        currentBtn = searchBtn;
-        popularBtn.setBackgroundResource(R.drawable.grey_border_flat);
-        popularBtn.setTextColor(Color.parseColor("#000000"));
-        rankLv.setVisibility(TextView.GONE);
-
-        newBtn.setBackgroundResource(R.drawable.grey_border_flat);
-        newBtn.setTextColor(Color.parseColor("#000000"));
-//        newLv.setVisibility(TextView.GONE);
-
-        searchBtn.setBackgroundResource(R.drawable.border_bottom_red);
-        searchBtn.setTextColor(Color.parseColor("#f91e2f"));
-        searchLayout.setVisibility(TextView.VISIBLE);
-    }
+        params.put("id", loginUtils.getId());
+        params.put("pw", loginUtils.getPw());
 
 
-    private void getAlloStoreList(){
-        if (btn_fee_current == btn_charged){
-            if (currentBtn == popularBtn){
-                st_url = mContext.getString(R.string.url_store_charged_rank);
-            }else if (currentBtn == newBtn){
-                st_url = mContext.getString(R.string.url_store_charged_new);
+        myClient.post(url, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                Log.i("(Store fragment)", new String(responseBody));
+                getStoreFirstListFinish(new String(responseBody));
             }
 
-        }else if (btn_fee_current == btn_free){
-            if (currentBtn == popularBtn){
-                st_url = mContext.getString(R.string.url_store_free_rank);
-            }else if (currentBtn == newBtn){
-                st_url = mContext.getString(R.string.url_store_free_new);
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(context, getResources().getString(R.string.on_failure), Toast.LENGTH_SHORT).show();
             }
-        }
-
-        Log.i("get Allo list url", st_url);
-
-        setListView();
-
+        });
     }
 
-    private void setListView(){
-        AlloHttpUtils alloHttpUtils = new AlloHttpUtils(mContext);
-        alloHttpUtils.getAlloStoreList(this, st_url);
-    }
+    private void getStoreFirstListFinish(String st_result) {
+        ar_allo = new ArrayList<Allo>();
 
+        try {
+            JSONObject jo_result = new JSONObject(st_result);
+            JSONObject jo_response = jo_result.getJSONObject("response");
+            JSONArray ja_allo_list = jo_response.getJSONArray("allo_list");
+            String status = jo_result.getString("status");
+            if (status.equals("success")) {
 
-// call back
-    public void setRankAdapter(ArrayList<Allo> allo_array){
-        allo_rank_array = allo_array;
-        StoreAdapter adapter = new StoreAdapter(mContext, R.layout.layout_store_item, allo_rank_array);
-        rankLv.setAdapter(adapter);
-        rankLv.setOnItemClickListener(rankItemClickListener);
-    }
+                for (int i = 0; i < ja_allo_list.length(); i++) {
+                    JSONObject jo_allo = ja_allo_list.getJSONObject(i);
 
+                    Allo allo = new Allo();
+                    allo.setTitle(jo_allo.getString("title"));
+                    allo.setArtist(jo_allo.getString("artist"));
+                    allo.setURL(jo_allo.getString("url"));
+                    if (jo_allo.has("thumbs"))
+                        allo.setThumbs(jo_allo.getString("thumbs"));
+                    if (jo_allo.has("image"))
+                        allo.setImage(jo_allo.getString("image"));
+                    if (jo_allo.has("uid"))
+                        allo.setId(jo_allo.getString("uid"));
+                    if (jo_allo.has("duration"))
+                        allo.setDuration(jo_allo.getInt("duration"));
+                    if (jo_allo.has("is_ucc"))
+                        allo.setIsUcc(jo_allo.getBoolean("is_ucc"));
+                    if (jo_allo.has("uploader_id"))
+                        allo.setUploader(jo_allo.getString("uploader_id"));
+                    if (jo_allo.has("desc"))
+                        allo.setContent(jo_allo.getString("desc"));
 
-    AdapterView.OnItemClickListener rankItemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            currentAllo = allo_rank_array.get(position);
-            playRingbackTone();
-        }
-    };
+                    ar_allo.add(allo);
+                }
 
-    public void playRingbackTone(){
-        pauseRingbackTone();
-        playSongLayout.setVisibility(View.VISIBLE);
-
-        if (currentAllo.getTitle().equals("none")) {
-        }else{
-            Log.i("allo url", currentAllo.getURL());
-            RingbackTone mRingbackTone = RingbackTone.getInstance();
-            mRingbackTone.playRingbackTone(currentAllo.getURL());
-            mRingbackTone.setCurrentAllo(currentAllo);
-
-            playSongPlayBtn.setBackgroundResource(R.drawable.pause_white_btn);
-            String st_play_title = currentAllo.getTitle()+" - "+currentAllo.getArtist();
-            playSongTV.setText(st_play_title);
-        }
-    }
-
-    public void pauseRingbackTone(){
-        RingbackTone mRingbackTone = RingbackTone.getInstance();
-        mRingbackTone.pauseRingBackTone();
-        playBarUIInit();
-    }
-    //    UI init
-    public void playBarUIInit(){
-        playSongPlayBtn.setBackgroundResource(R.drawable.play_white_btn);
-    }
-
-    //     onClick method
-    View.OnClickListener playListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            RingbackTone mRingbackTone = RingbackTone.getInstance();
-            if (mRingbackTone.isPlayingNow()){
-                pauseRingbackTone();
-            }else{
-                playRingbackTone();
+            } else if (status.equals("fail")) {
+                ErrorHandler errorHandler = new ErrorHandler(context);
+                errorHandler.handleErrorCode(jo_result);
             }
+
+        } catch (Exception e) {
+            Toast.makeText(context, "Json Error", Toast.LENGTH_SHORT).show();
         }
-    };
 
-    public void playSongPlayBtn(View v){
-
+        mAdapter = new RecyclerViewMaterialAdapter(new StoreRecyclerViewAdapter(context, ar_allo));
+        mRecyclerView.setAdapter(mAdapter);
+        MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
     }
-
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        setResumePlayBarUI();
-    }
-
-    public void setResumePlayBarUI(){
-        RingbackTone mRingbackTone = RingbackTone.getInstance();
-        if (mRingbackTone.getCurrentAllo() != null) {
-            currentAllo = mRingbackTone.getCurrentAllo();
-            String play_title = currentAllo.getTitle() + " - " + currentAllo.getArtist();
-            playSongTV.setText(play_title);
-            playSongLayout.setVisibility(View.VISIBLE);
-
-
-            boolean isPlaying = mRingbackTone.isPlayingNow();
-            if (isPlaying){
-                playSongPlayBtn.setBackgroundResource(R.drawable.pause_white_btn);
-            }
-            else
-                playSongPlayBtn.setBackgroundResource(R.drawable.play_white_btn);
-        }
-    }
-
-    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            // Get extra data included in the Intent
-            Log.i("receiver", "stop stop stop");
-            String message = intent.getStringExtra("message");
-            if (message.equals("stop")){
-                playBarUIInit();
-            }
-        }
-    };
-
-    @Override
-    public void onDestroy() {
-        // Unregister since the activity is about to be closed.
-        // This is somewhat like [[NSNotificationCenter defaultCenter] removeObserver:name:object:]
-        LocalBroadcastManager.getInstance(mContext).unregisterReceiver(mMessageReceiver);
-        super.onDestroy();
-    }
-
 
 }

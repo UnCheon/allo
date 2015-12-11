@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item>
-        <shape android:shape="oval">
-            <stroke android:color="#f91f30" android:width="5px" />
-            <solid android:color="#fff" />
-        </shape>
-    </item>
-</layer-list><!-- From: file:/Users/baek_uncheon/AndroidStudioProjects/allo/app/src/main/res/drawable/red_border_circle.xml -->

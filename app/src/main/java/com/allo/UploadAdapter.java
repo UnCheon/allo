@@ -1,10 +1,7 @@
 package com.allo;
 
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,63 +40,24 @@ public class UploadAdapter extends ArrayAdapter<Allo> {
             holder = new ViewHolder();
             holder.fileIV = (ImageView) v.findViewById(R.id.fileIV);
             holder.fileTV = (TextView) v.findViewById(R.id.fileTV);
-            holder.moreBtn = (ImageView) v.findViewById(R.id.moreBtn);
-            holder.moreLayout= (LinearLayout) v.findViewById(R.id.moreLayout);
+            holder.tv_time = (TextView) v.findViewById(R.id.tv_time);
+
+            holder.moreLayout = (LinearLayout) v.findViewById(R.id.moreLayout);
 
             v.setTag(holder);
         } else {
             holder = (ViewHolder) v.getTag();
         }
 
-        Allo mAllo= allo_list.get(position);
+        Allo mAllo = allo_list.get(position);
 
         if (mAllo != null) {
             holder.fileTV.setText(mAllo.getTitle());
-            final int play_position = position;
-            holder.moreLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openMoreDialog(play_position);
-                }
-            });
+            holder.tv_time.setText(AlloUtils.getInstance().millisecondToTimeString(mAllo.getDuration()));
 
         }
         return v;
     }
-
-
-    private void openMoreDialog(final int position)
-    {
-        final Allo allo = allo_list.get(position);
-        final CharSequence[] items = {"파일정보 보기", "파일 업로드하기", "파일 선물하기"};
-
-        new AlertDialog.Builder(mContext)
-                .setTitle(allo.getTitle())
-                .setItems(items,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialoginterface, int i) {
-                                switch (i) {
-                                    case 0:
-                                        break;
-                                    case 1:
-                                        uploadFile(position);
-                                        break;
-                                    case 2:
-                                        break;
-                                }
-                            }
-                        })
-                .show();
-    }
-
-    private void uploadFile(int position){
-        Allo allo = allo_list.get(position);
-        AlloHttpUtils alloHttpUtils = new AlloHttpUtils(mContext);
-//        alloHttpUtils.setUploadFile(allo);
-
-    }
-
-
 
 
     private class ViewHolder {
@@ -107,6 +65,6 @@ public class UploadAdapter extends ArrayAdapter<Allo> {
         ImageView fileIV;
         TextView fileTV;
         LinearLayout moreLayout;
-        ImageView moreBtn;
+        TextView tv_time;
     }
 }

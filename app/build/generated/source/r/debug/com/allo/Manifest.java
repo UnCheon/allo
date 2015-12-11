@@ -10,5 +10,6 @@ package com.allo;
 public final class Manifest {
     public static final class permission {
         public static final String C2D_MESSAGE="com.allo.gcm.permission.C2D_MESSAGE";
+        public static final String SYSTEM_ALERT_WINDOW="android.permission.SYSTEM_ALERT_WINDOW";
     }
 }

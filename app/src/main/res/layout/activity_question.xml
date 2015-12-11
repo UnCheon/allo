@@ -4,7 +4,7 @@
     android:background="#000" android:padding="5dp">
 
     <LinearLayout
-        android:background="@drawable/radius_white"
+        android:background="@drawable/radius_red"
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
@@ -16,50 +16,54 @@
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="fill_parent"
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp">
+                android:gravity="center"
+                android:baselineAligned="false">
 
                 <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:background="@drawable/back_btn"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/iv_back"/>
-
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="My allo"
-                    android:textColor="#000"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:id="@+id/nameTV"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/iv_back"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:padding="13dp"
+                    android:src="@drawable/back_white" />
             </LinearLayout>
+
+
+
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:gravity="center_vertical|right"
-                android:baselineAligned="false"
-                android:paddingRight="15dp">
+                android:gravity="center_horizontal">
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                <TextView
+                    android:id="@+id/tv_menu_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="도움말"
+                    android:textColor="#fff"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
                     android:layout_gravity="center_vertical"
-                    android:background="@drawable/allo_logo" />
-
+                    android:paddingLeft="10dp" />
             </LinearLayout>
 
+            <LinearLayout
+
+                android:orientation="horizontal"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:id="@+id/ll_make_allo"
+                android:baselineAligned="false"
+                android:paddingRight="10dp">
 
 
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -79,27 +83,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#fff">
-
                 <TextView
                     android:background="@drawable/border_bottom_red"
                     android:gravity="center"
                     android:textSize="15dp"
-                    android:textColor="#f91e2f"
+                    android:textColor="#000"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="알로 이용권"
+                    android:id="@+id/tv_first" />
+
+                <TextView
+                    android:background="#fff"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:textColor="#000"
                     android:layout_weight="1"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:text="기본 알로"
-                    android:id="@+id/tv_first" />
-
-                <TextView
-                    android:textSize="15dp"
-                    android:gravity="center"
-                    android:textColor="#000"
-                    android:background="#fff"
-                    android:layout_weight="1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:text="시간대 알로"
                     android:id="@+id/tv_second" />
 
                 <TextView
@@ -113,15 +116,14 @@
                     android:text="친구별 알로"
                     android:id="@+id/tv_third" />
 
+
+
             </LinearLayout>
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:background="#ccc" />
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_question"
+                android:background="@color/white"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
             </android.support.v4.view.ViewPager>

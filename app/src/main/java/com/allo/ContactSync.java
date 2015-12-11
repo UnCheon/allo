@@ -1,29 +1,59 @@
 package com.allo;
 
-import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.provider.CallLog;
+import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.util.Log;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
  * Created by baek_uncheon on 2015. 1. 27..
  */
-public class ContactSync {
+public class ContactSync extends AsyncTask<String, String, String>{
 
     private static final int UPDATE_FRIENDS_LIST = 0;
 
     Context context;
 
-    ContactSync(Context context){
+    ContactSync(Context context) {
         this.context = context;
     }
+
+
+    public void onFinishSyncContact(){
+
+    }
+
+    @Override
+    protected void onPreExecute() {
+        Log.i("Async", "onPreExecute");
+    }
+
+
+    @Override
+    protected String doInBackground(String... params) {
+        Log.i("Async", "onInBackground");
+        syncLocalContacts();
+        publishProgress("FINISH");
+        return null;
+    }
+
+    @Override
+    protected void onProgressUpdate(String... params) {
+        Log.i("Async", "onProgressUpdate");
+        if(params[0].equals("FINISH"))
+            onFinishSyncContact();
+    }
+
+    @Override
+    protected void onCancelled() {
+        Log.i("Async", "onCancaelled");
+    }
+
+
 
     public void syncLocalContacts() {
         ContactDBOpenHelper mContactDBOpenHelper = new ContactDBOpenHelper(context);
@@ -32,20 +62,20 @@ public class ContactSync {
         ArrayList<Contact> contact_list = getContactList();
         ArrayList<Contact> contact_db_list = getContactDBList();
 
-        Log.i("before sync", String.valueOf(contact_db_list.size())+"  : "+String.valueOf(contact_list.size()));
+        Log.i("before sync", String.valueOf(contact_db_list.size()) + "  : " + String.valueOf(contact_list.size()));
 
         String phone_number;
         Boolean is_new;
 
-        for (int i = 0 ; i < contact_list.size() ; i++) {
+        for (int i = 0; i < contact_list.size(); i++) {
             phone_number = contact_list.get(i).getPhonenum();
             is_new = true;
-            for (int j = 0 ; j < contact_db_list.size() ; j++){
+            for (int j = 0; j < contact_db_list.size(); j++) {
                 if (phone_number.equals(contact_db_list.get(j).getPhonenum())) {
                     is_new = false;
                 }
             }
-            if(is_new){
+            if (is_new) {
                 Log.i("tag", "is new ");
                 mContactDBOpenHelper.setContact(phone_number, is_new);
             }
@@ -54,14 +84,14 @@ public class ContactSync {
     }
 
 
-    public void syncFriendName(ArrayList<Friend> friend_array){
+    public void syncFriendName(ArrayList<Friend> friend_array) {
         ArrayList<Contact> contact_array = getContactList();
 
-        for (int i = 0 ; i < friend_array.size() ; i++ ){
-            for (int j = 0 ; j < contact_array.size() ; j++){
+        for (int i = 0; i < friend_array.size(); i++) {
+            for (int j = 0; j < contact_array.size(); j++) {
                 Friend friend = friend_array.get(i);
                 Contact contact = contact_array.get(j);
-                if (friend.getPhoneNumber().equals(contact.getPhonenum())){
+                if (friend.getPhoneNumber().equals(contact.getPhonenum())) {
                     Log.i("sync friend name", contact.getNickname());
                     friend.setNickname(contact.getNickname());
                     friend_array.set(i, friend);
@@ -71,8 +101,6 @@ public class ContactSync {
             }
         }
     }
-
-
 
 
     public ArrayList<Contact> getContactDBList() {
@@ -104,16 +132,15 @@ public class ContactSync {
     }
 
 
-
     public ArrayList<Contact> getContactList() {
 
 
         Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
 
-        String[] projection = new String[] {
+        String[] projection = new String[]{
                 ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
                 ContactsContract.CommonDataKinds.Phone.NUMBER,
-                ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME };
+                ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME};
 
         String[] selectionArgs = null;
 
@@ -145,30 +172,6 @@ public class ContactSync {
         return contact_list;
     }
 
-    public void getHistory(){
-        String[] projection = { CallLog.Calls.CONTENT_TYPE, CallLog.Calls.NUMBER, CallLog.Calls.DURATION, CallLog.Calls.DATE };
-        Cursor cur = context.getContentResolver().query(CallLog.Calls.CONTENT_URI, null, CallLog.Calls.TYPE + "= ?",
-                new String[]{ String.valueOf(CallLog.Calls.OUTGOING_TYPE) }, CallLog.Calls.DEFAULT_SORT_ORDER);
-
-        Log.i("db count=", String.valueOf(cur.getCount()));
-        Log.i("db count=", CallLog.Calls.CONTENT_ITEM_TYPE);
-        Log.i("db count=", CallLog.Calls.CONTENT_TYPE);
-
-        if(cur.moveToFirst() && cur.getCount() > 0) {
-            while(cur.isAfterLast() == false) {
-                StringBuffer sb = new StringBuffer();
-
-                sb.append("call type=").append(cur.getString(cur.getColumnIndex(CallLog.Calls.TYPE)));
-                sb.append(", cashed name=").append(cur.getString(cur.getColumnIndex(CallLog.Calls.CACHED_NAME)));
-                sb.append(", content number=").append(cur.getString(cur.getColumnIndex(CallLog.Calls.NUMBER)));
-                sb.append(", duration=").append(cur.getString(cur.getColumnIndex(CallLog.Calls.DURATION)));
-                sb.append(", new=").append(cur.getString(cur.getColumnIndex(CallLog.Calls.NEW)));
-//                sb.append(", date=").append(timeToString(cur.getLong(cur.getColumnIndex(CallLog.Calls.DATE)))).append("]");
-                cur.moveToNext();
-                Log.i("call history[", sb.toString());
-            }
-        }
-    }
 
 
 }

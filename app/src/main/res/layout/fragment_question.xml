@@ -2,15 +2,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_vertical"
+    android:gravity="top|left"
     android:background="#fff"
     android:id="@+id/fragment_allo_desc">
     <TextView
+        android:layout_marginTop="15dp"
+        android:paddingTop="35dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="친구들끼리 통화연결음을 설정해 보세요"
+        android:text="알로 이용권"
+        android:textColor="@color/allo_red"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:id="@+id/tv_title"
+        />
+    <TextView
+        android:paddingTop="25dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="친구들끼리 통화연결음을 설정해 보세요친구들끼리 통화연결음을 설정해 보세요친구들끼리 통화연결음을 설정해 보세요친구들끼리 통화연결음을 설정해 보세요친구들끼리 통화연결음을 설정해 보세요친구들끼리 통화연결음을 설정해 보세요"
         android:layout_gravity="center"
-        android:textSize="20sp"
+        android:textColor="#333"
+        android:textSize="16dp"
         android:id="@+id/tv_desc"
          />
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="transparent">#00000000</color>
+
+    <drawable name="waveform_selected">#f91e2f</drawable>
+    <drawable name="waveform_unselected">#ff801018</drawable>
+    <drawable name="waveform_unselected_bkgnd_overlay">#ffaeaeae</drawable>
+    <drawable name="selection_border">#ffaeaeae</drawable>
+    <drawable name="playback_indicator">#000</drawable>
+    <drawable name="grid_line">#000</drawable>
+    <drawable name="timecode">#000</drawable>
+    <drawable name="timecode_shadow">#ffffff</drawable>
+
+    <color name="allo_red">#f91e2f</color>
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
+    <color name="grey">#f9f9f9</color>
+    <color name="ccc">#cccccc</color>
+    <color name="aaa">#aaaaaa</color>
+    <color name="grey_clicked">#ccc</color>
+
+</resources>

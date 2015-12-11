@@ -14,7 +14,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:id="@+id/iv_allo"
-            android:background="@drawable/allo_logo"
+            android:src="@drawable/allo_logo"
             android:layout_marginLeft="8dp" />
         <TextView
             android:layout_width="wrap_content"

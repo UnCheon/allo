@@ -1,127 +1,69 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000" android:padding="5dp">
+    android:background="#000"
+    android:padding="5dp">
 
 
     <LinearLayout
-        android:background="@drawable/radius_white"
-        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:background="@drawable/radius_white"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="60dp"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
+                android:layout_width="50dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp">
+                android:baselineAligned="false"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/menu_50"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/iv_side_menu"/>
-
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="내 알로 정보"
-                    android:textColor="#000"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:id="@+id/nameTV"
-                    android:layout_gravity="center_vertical" />
+                    android:id="@+id/iv_back"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="15dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/selector_top_munu" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:layout_marginRight="50dp"
                 android:layout_weight="1"
-                android:gravity="center_vertical|right"
-                android:baselineAligned="false"
-                android:paddingRight="15dp"
-                android:id="@+id/addAlloLayout">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:text="알로 설정하기"
+                    android:textColor="#000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="1px"
+            android:background="#ddd" />
 
-            <ListView
-                android:layout_weight="1"
-                android:id="@+id/friendList"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-            </ListView>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:background="#f91f30"
-                android:id="@+id/playSongLayout"
-                android:visibility="gone">
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-
-                    <LinearLayout
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:id="@+id/iv_playing"
-                            android:layout_marginLeft="10dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:textSize="12dp"
-                            android:textColor="#eee"
-                            android:text="재생할 곡을 선택하세요."
-                            android:id="@+id/playSongTV" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="15dp"
-                        android:orientation="horizontal"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_weight="5"
-                        android:id="@+id/playSongPlayLayout"
-
-                        android:clickable="true">
-
-                        <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:id="@+id/playSongPlayBtn"
-                            android:background="@drawable/play_white_btn" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+        <ListView
+            android:id="@+id/lv_my_allo"
+            android:listSelector="@drawable/selector"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"></ListView>
     </LinearLayout>
 </RelativeLayout>

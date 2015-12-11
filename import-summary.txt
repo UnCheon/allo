@@ -8,16 +8,7 @@ should evaluate whether these are still needed in your project and if
 so manually move them:
 
 * .DS_Store
-* library.iml
 * pom.xml
-* target/
-* target/generated-sources/
-* target/generated-sources/r/
-* target/generated-sources/r/com/
-* target/generated-sources/r/com/viewpagerindicator/
-* target/generated-sources/r/com/viewpagerindicator/BuildConfig.java
-* target/generated-sources/r/com/viewpagerindicator/Manifest.java
-* target/generated-sources/r/com/viewpagerindicator/R.java
 
 Replaced Jars with Dependencies:
 --------------------------------
@@ -39,8 +30,6 @@ Eclipse projects. Here's how the projects were restructured:
 * AndroidManifest.xml => ViewPagerIndicator/src/main/AndroidManifest.xml
 * res/ => ViewPagerIndicator/src/main/res/
 * src/ => ViewPagerIndicator/src/main/java/
-* src/.DS_Store => ViewPagerIndicator/src/main/resources/.DS_Store
-* src/com/.DS_Store => ViewPagerIndicator/src/main/resources/com/.DS_Store
 
 Missing Android Support Repository:
 -----------------------------------

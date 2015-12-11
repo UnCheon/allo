@@ -7,12 +7,10 @@ import android.preference.PreferenceManager;
 /**
  * Created by baek_uncheon on 2015. 3. 3..
  */
-public class BasePreferenceUtil
-{
+public class BasePreferenceUtil {
     private SharedPreferences _sharedPreferences;
 
-    protected BasePreferenceUtil(Context $context)
-    {
+    protected BasePreferenceUtil(Context $context) {
         super();
         _sharedPreferences = PreferenceManager.getDefaultSharedPreferences($context);
     }
@@ -20,13 +18,10 @@ public class BasePreferenceUtil
     /**
      * key 수동 설정
      *
-     * @param key
-     *           키 값
-     * @param value
-     *           내용
+     * @param key   키 값
+     * @param value 내용
      */
-    protected void put(String $key, String $value)
-    {
+    protected void put(String $key, String $value) {
         SharedPreferences.Editor editor = _sharedPreferences.edit();
         editor.putString($key, $value);
         editor.commit();
@@ -35,25 +30,20 @@ public class BasePreferenceUtil
     /**
      * String 값 가져오기
      *
-     * @param key
-     *           키 값
+     * @param key 키 값
      * @return String (기본값 null)
      */
-    protected String get(String $key)
-    {
+    protected String get(String $key) {
         return _sharedPreferences.getString($key, null);
     }
 
     /**
      * key 설정
      *
-     * @param key
-     *           키 값
-     * @param value
-     *           내용
+     * @param key   키 값
+     * @param value 내용
      */
-    protected void put(String $key, boolean $value)
-    {
+    protected void put(String $key, boolean $value) {
         SharedPreferences.Editor editor = _sharedPreferences.edit();
         editor.putBoolean($key, $value);
         editor.commit();
@@ -62,27 +52,21 @@ public class BasePreferenceUtil
     /**
      * Boolean 값 가져오기
      *
-     * @param key
-     *           키 값
-     * @param defValue
-     *           기본값
+     * @param key      키 값
+     * @param defValue 기본값
      * @return Boolean
      */
-    protected boolean get(String $key, boolean $default)
-    {
+    protected boolean get(String $key, boolean $default) {
         return _sharedPreferences.getBoolean($key, $default);
     }
 
     /**
      * key 설정
      *
-     * @param key
-     *           키 값
-     * @param value
-     *           내용
+     * @param key   키 값
+     * @param value 내용
      */
-    protected void put(String $key, int $value)
-    {
+    protected void put(String $key, int $value) {
         SharedPreferences.Editor editor = _sharedPreferences.edit();
         editor.putInt($key, $value);
         editor.commit();
@@ -91,14 +75,11 @@ public class BasePreferenceUtil
     /**
      * int 값 가져오기
      *
-     * @param key
-     *           키 값
-     * @param defValue
-     *           기본값
+     * @param key      키 값
+     * @param defValue 기본값
      * @return int
      */
-    protected int get(String $key, int $default)
-    {
+    protected int get(String $key, int $default) {
         return _sharedPreferences.getInt($key, $default);
     }
 }

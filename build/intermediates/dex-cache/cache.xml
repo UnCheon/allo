@@ -2,67 +2,277 @@
 <items version="2" >
 
     <item
-        jar="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/classes-3cd0bab5aec1a1087d7c6514d8743104ada9e475.jar" />
+        sha1="d405025c600055237c171a0bbabaa49d69696573">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-f3c09ef7609c8ead66a09b79335073571d6d0eda.jar" />
     </item>
     <item
-        jar="/Users/baek_uncheon/AndroidStudioProjects/allo/app/libs/UrQA-Client_0.97.jar"
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="6c520db9e766a4646b04baa8dbcd885a223a026f">
-        <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/UrQA-Client_0.97-08c2ce6db7724c6076c85cc8faf7016ccca92517.jar" />
+        sha1="f44d03c138cb6488fdbaa65e3a7e5878861a56d8">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-8921036392cdeb74be949347a2eb78063633c913.jar" />
     </item>
     <item
-        jar="/Users/baek_uncheon/AndroidStudioProjects/allo/app/libs/universal-image-loader-1.9.4.jar"
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/libs/universal-image-loader-1.9.4.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="dd9eeb557650c4ad7394df23f0f5cf27a7cfc697">
-        <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.4-d331917a41916cd083d1c1edd44b78bbcac01f34.jar" />
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/universal-image-loader-1.9.4-cc25c2a787533f25c96c06ead6aef1bbdb61859f.jar" />
     </item>
     <item
-        jar="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/classes-f653588231a116b807d5c5b06b703dd585023fc7.jar" />
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/internal_impl-22.2.1-1df7a304c92c95bc83a952635cdb9e9f6d10d67e.jar" />
     </item>
     <item
-        jar="/Users/baek_uncheon/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-aa1151eb089a031f7b39714c24794171e3a78cb2.jar" />
+        sha1="1a6411087ab88ce5542f593e63a2752b6b0d6f1a">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-bfb4b1c84fbe6ebae4c3632ce980baa806666ff9.jar" />
     </item>
     <item
-        jar="/Users/baek_uncheon/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.5/77bf7cacf9cefe19dc105e5425d2eb1bb5285881/android-async-http-1.4.5.jar"
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8d736fefa22d896e84a268354b3ed48a42663150">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-8461e0c08fcc78fc41e7d72bee3c350cbcc1d8a6.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="272bc5d7063f24bc3a33ea1d318cde8f31f5ec4c">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-4c84ed1fcc54235676aa7cfffab2ab4d9580ff71.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.2/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c85dd0bfecfea84a465c407503153c3c2ac643ce">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-3b8d1b529df6f654116eb30c662d7f9fd69454bc.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-6f7b2c7dfd94ecc0309601a44e3951fce21b8ea8.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f02127a85abd52a2cd526d4c2409f21969f80ee8">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-61813c47c5d8a074c926ce205853301495b38382.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.github.florent37/materialviewpager/1.0.5.2/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ade9d5625fbfeea3dfafede5ac2e5c0b69ca806a">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-e3c45a83beaf32ecb31a5239b2a0f0f6941d3ac6.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.github.ksoichiro/android-observablescrollview/1.5.2/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="256c2cf84542c459927ed4aa5f99a9b47855c071">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-a1728afe76592625027906320c025318fe353cf0.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.jpardogo.materialtabstrip/library/1.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="611c7708cd3df0d7ae99105d4df5af8eb25c4b32">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-3fcce4540cbce6ac6c5fe5008104b2062997affd.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-68c610b999b7f609e25acf82bb9ca09cf3dc670a.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-7a119b03403bbfaccf5205ac97935a3db4d3c4d1.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/allo/ViewPagerIndicator/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="6d6ba52e33f11239b124bb934ce9eae83335bf1f">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-ea8a66cfbb88aa862127e67d90e1512773a2c332.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-dab5111a5e4b716ac39e84531d306216dc4fc731.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="6440e5e5cfe368f9bff3c537fb8988048069cb33">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-46ca0a36aa6868aa411b89d3580d0b8eba54fefb.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/library-2.4.0-f083cefd1a6f7d06a823c374270dcd80945a5104.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-18286d2c42fff439e37385d9149f38224dd05961.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-8edbab588cb6885574ea8c47692b5fcf969b0242.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="02bac2dc792d78241077861566f2c82da955e7fa">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-d6b99f0e7777dc00f88ddef26c5ea69a17ba8822.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="5b37cf49773f7f17aca9830efd3053b0cac56728">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-9a9d02d58f747a44dc4f73f7d5e817c64439dcd4.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-c25b1e6bb5b1869e70f87f9289c59a6d202d23f3.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.5/77bf7cacf9cefe19dc105e5425d2eb1bb5285881/android-async-http-1.4.5.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="77bf7cacf9cefe19dc105e5425d2eb1bb5285881">
-        <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.5-24f28f52b52df051f0ec620570561fb2ab35167c.jar" />
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/android-async-http-1.4.5-1badf25f125cb55999237404214174b5542940de.jar" />
     </item>
     <item
-        jar="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/allo/ViewPagerIndicator/unspecified/classes.jar"
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="99be3e5166104c5c3a9c73f2174fed7a30f6afc6">
-        <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/classes-093eb2ec94e857d9216dea869c8724a2c4ecf529.jar" />
+        sha1="a1372c17fccacca753d3951d3ad820571cbce075">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-80197c9b3878b4d9bcf0f837e32a3a12b0b67481.jar" />
     </item>
     <item
-        jar="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jar="/Users/uncheon/.gradle/caches/modules-2/files-2.1/com.flaviofaria/kenburnsview/1.0.6/65dcd9c03096b73f4740d63cf93d30a692fe52b5/kenburnsview-1.0.6.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-03936f1f5205988b1c70e4222a4c3dcb04fb7a92.jar" />
+        sha1="65dcd9c03096b73f4740d63cf93d30a692fe52b5">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/kenburnsview-1.0.6-c9246dd49f39a84697374a974c01b5ea24ca52a0.jar" />
     </item>
     <item
-        jar="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/3.1.59/classes.jar"
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="2dd7b1a9ea65bb03d9cd16df777eeaf537a1fc81">
-        <dex dex="/Users/baek_uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/debug/classes-1dca44db9d00931a8e7d59ca3e51d66c702505bb.jar" />
+        sha1="a78183f30e769a98ab4820794f597763088d3065">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-f04b8afab825a7e141483a1a2bdf1549c9c06ce3.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-f286f6203eab3921a47b49427dcf80ab51ee554d.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="63ec6e9f4fe5482a7447d0f3091b8e543a02554c">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-9f452b1f7c3438fc994150819cfce79fbbf1a121.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/support-annotations-22.2.1-301584cd649a23345ccb30c50136c6782a8b91ad.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/picasso-2.5.2-93ef376189f2ddcdb167c64f51988b71b12f507e.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ba3df4eb0a630d7de294f0e48d3f9267d279b784">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/internal_impl-22.0.0-5957cac655eb60df72653b6fe89e338cc37b0c45.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-e21af540404bec4d547b89fbae08f69bc3bf211f.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="97f7e239e86ef994de894818fdd8a71d2e89d6aa">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-d459456af6f43cc5f7033324c9e1102d351f9455.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-e38268c0611b8a0e25d5dc349bc2123aec421d70.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.kakao.sdk/kakaolink/1.1.2/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="53b108b540c7adb265b21bc55b60f32dd6b9131b">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-a51230130bf0b7e8b172947daee3c5dc27c223d6.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-abf5cddaf8a4cf2bc16fbfe89034456b7f9fe425.jar" />
+    </item>
+    <item
+        jar="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="68c140702c7242d914655bcb3164d9e8c45b84cb">
+        <dex dex="/Users/uncheon/AndroidStudioProjects/allo/app/build/intermediates/pre-dexed/release/classes-6a4c9870c84764c924b3a21caa7d02197998dcf1.jar" />
     </item>
 
 </items>

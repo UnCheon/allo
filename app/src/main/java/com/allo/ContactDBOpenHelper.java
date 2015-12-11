@@ -30,65 +30,68 @@ public class ContactDBOpenHelper {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE "+TABLE_NAME+" ( _id INTEGER PRIMARY KEY AUTOINCREMENT, phone_number TEXT UNIQUE, is_new BOOLEAN);");
+            db.execSQL("CREATE TABLE " + TABLE_NAME + " ( _id INTEGER PRIMARY KEY AUTOINCREMENT, phone_number TEXT UNIQUE, is_new BOOLEAN);");
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP IF EXISTS "+ TABLE_NAME);
+            db.execSQL("DROP IF EXISTS " + TABLE_NAME);
             onCreate(db);
         }
     }
 
-    public ContactDBOpenHelper(Context context){
+    public ContactDBOpenHelper(Context context) {
         this.mContext = context;
     }
 
-    public ContactDBOpenHelper open_writableDatabase() throws SQLException{
+    public ContactDBOpenHelper open_writableDatabase() throws SQLException {
         mDBHelper = new DatabaseHelper(mContext);
         mDB = mDBHelper.getWritableDatabase();
         return this;
     }
 
-    public ContactDBOpenHelper open_readableDatabase() throws SQLException{
+    public ContactDBOpenHelper open_readableDatabase() throws SQLException {
         mDBHelper = new DatabaseHelper(mContext);
         mDB = mDBHelper.getReadableDatabase();
         return this;
     }
 
-    public void close(){
+    public void close() {
         mDB.close();
     }
 
 
-    public Cursor getAllContacts(){
+    public Cursor getAllContacts() {
         return mDB.query(TABLE_NAME, null, null, null, null, null, null, null);
     }
 
 
-
-    public Cursor getNewContacts(){
-        Cursor cursor = mDB.rawQuery("select * from "+TABLE_NAME+" where is_new;", null);
+    public Cursor getNewContacts() {
+        Cursor cursor = mDB.rawQuery("select * from " + TABLE_NAME + " where is_new;", null);
         return cursor;
     }
 
-    public void updateContacts(){
+    public void updateContacts() {
         ContentValues row;
         row = new ContentValues();
         row.put("is_new", false);
         mDB.update(TABLE_NAME, row, "is_new=1", null);
-
     }
 
-    public void updateContact(String phone_number, Boolean is_new){
+    public void deleteAllContacts() {
+        String sql = "drop table " + TABLE_NAME;
+        mDB.execSQL(sql);
+    }
+
+    public void updateContact(String phone_number, Boolean is_new) {
         ContentValues row;
         row = new ContentValues();
         row.put("is_new", is_new);
-        mDB.update(TABLE_NAME, row, "phone_number='"+phone_number+"'", null);
+        mDB.update(TABLE_NAME, row, "phone_number='" + phone_number + "'", null);
     }
 
 
-    public void setContact(String phone_number, Boolean is_new){
+    public void setContact(String phone_number, Boolean is_new) {
         ContentValues row;
         row = new ContentValues();
         row.put("phone_number", phone_number);
@@ -98,10 +101,7 @@ public class ContactDBOpenHelper {
     }
 
 
-
-
-
-    public void setContacts (ArrayList<Contact> contact_list) {
+    public void setContacts(ArrayList<Contact> contact_list) {
         ContentValues row;
 
         String phone_number = null;
@@ -111,7 +111,7 @@ public class ContactDBOpenHelper {
         mDB.delete(TABLE_NAME, null, null);
 
 
-        for (int i = 0 ; i < contact_list.size() ; i++){
+        for (int i = 0; i < contact_list.size(); i++) {
             phone_number = contact_list.get(i).getPhonenum();
             is_new = contact_list.get(i).getIsNew();
 

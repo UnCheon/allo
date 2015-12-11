@@ -1,150 +1,286 @@
 package com.allo;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.PersistentCookieStore;
-import com.loopj.android.http.RequestParams;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import org.apache.http.Header;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.io.IOException;
+
 
 
 public class IntroActivity extends Activity {
+    Context context;
 
     String st_id;
     String st_pw;
 
+    private GoogleCloudMessaging _gcm;
+    private String _regId;
+    private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private static final String SENDER_ID = "793263929001";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.i("introActivity", "intro activity on create");
         setContentView(R.layout.activity_intro);
 
-        syncContacts();
-        checkRegister();
-        /*
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                checkRegister();
-            }
 
-        }, 1000);
-        */
+
+
+
+        startAllo();
+
+
     }
 
-    private void syncContacts(){
-        ContactSync contactSync = new ContactSync(getApplicationContext());
-        contactSync.syncLocalContacts();
+    private void startAllo(){
+        if (checkNetwork()){
+            if (getRegistrationId().equals(""))
+                checkGCMPossible();
+            checkRegister();
+        }else{
+            AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this);
+            alert_confirm.setTitle("알림").setMessage("네트워크에 연결되어있지 않습니다.\n다시 시도하시겠습니까?").setCancelable(false).
+                    setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            android.os.Process.killProcess(android.os.Process.myPid());
+                        }
+                    }).setPositiveButton("확인",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            startAllo();
+                        }
+                    });
+            AlertDialog alert = alert_confirm.create();
+            alert.show();
+
+        }
     }
 
-    private void checkRegister(){
+    private boolean checkNetwork(){
+        ConnectivityManager cm = (ConnectivityManager) IntroActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (mobile.isConnected() || wifi.isConnected()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+
+
+
+    private void checkRegister() {
         SharedPreferences pref = getSharedPreferences("userInfo", MODE_PRIVATE);
 
         st_id = pref.getString("id", "");
         st_pw = pref.getString("pw", "");
 
+        Log.i("IntroActivity", "id : "+st_id +", pw : "+st_pw);
+
         if (st_id.equals("") || st_pw.equals("")) {
             goLoginActivity();
 
         } else {
-            connect_http_login();
+
+            LoginUtils loginUtils = new LoginUtils(IntroActivity.this){
+                @Override
+                public void onLoginSuccess(){
+                    Intent intent = new Intent(IntroActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    IntroActivity.this.finish();
+                }
+
+                @Override
+                public void onLoginFailure(){
+                    goLoginActivity();
+                }
+
+                @Override
+                public void onNetworkFail(){
+                    AlertDialog.Builder alert_confirm = new AlertDialog.Builder(IntroActivity.this);
+                    alert_confirm.setTitle("알림").setMessage("네트워크에 연결되어있지 않습니다.\n다시 시도하시겠습니까?").setCancelable(false).
+                            setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    android.os.Process.killProcess(android.os.Process.myPid());
+                                }
+                            }).setPositiveButton("확인",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startAllo();
+                                }
+                            });
+                    AlertDialog alert = alert_confirm.create();
+                    alert.show();
+                }
+            };
+            loginUtils.login(st_id, st_pw, "", "");
         }
     }
 
     private void goLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-        finish();
+        IntroActivity.this.finish();
     }
 
 
-    private void connect_http_login(){
 
-        AsyncHttpClient myClient = new AsyncHttpClient();
-        myClient.setTimeout(30000);
-        PersistentCookieStore myCookieStore = new PersistentCookieStore(getApplicationContext());
-        myClient.setCookieStore(myCookieStore);
+    private void checkGCMPossible() {
 
-        RequestParams params = new RequestParams();
-        params.put("id", st_id);
-        params.put("pw", st_pw);
+        // google play service가 사용가능한가
 
-        Log.i("id pw", st_id + st_pw);
+        if (checkPlayServices()) {
+            _gcm = GoogleCloudMessaging.getInstance(this);
+            _regId = getRegistrationId();
 
-        String url = getApplication().getString(R.string.url_login);
+            if (TextUtils.isEmpty(_regId))
+                registerInBackground();
+        } else {
+            Log.i("MainActivity.java | onCreate", "|No valid Google Play Services APK found.|");
+
+        }
 
 
-        myClient.post(url, params, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                Log.i("HTTP RESPONSE......", new String(responseBody));
-                onLoginRequestSuccess(new String(responseBody));
-            }
+        Log.i("reg_id", getRegistrationId());
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-//                System.out.println(new String(responseBody));
-                Toast.makeText(getApplicationContext(), "네트워크 상태를 확인해주세요. ", Toast.LENGTH_SHORT).show();
-                goLoginActivity();
-                finish();
-            }
-        });
+        // display received msg
+        String msg = getIntent().getStringExtra("msg");
+        if (!TextUtils.isEmpty(msg)) {
+
+        }
+
+        context = this;
+
     }
 
-    private void onLoginRequestSuccess(String st_response_body){
-        try{
-            JSONObject jo_response_body = new JSONObject(st_response_body);
-            String st_status = jo_response_body.getString("status");
-            if (st_status.equals("success")){
-                JSONObject jo_response = jo_response_body.getJSONObject("response");
-                String st_token = jo_response.getString("token");
-                JSONObject jo_my_info = jo_response.getJSONObject("my_info");
-                String st_nickname = jo_my_info.getString("nickname");
-                String st_phone_number = jo_my_info.getString("phone_number");
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
 
-                SharedPreferences pref = getSharedPreferences("userInfo", MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.clear();
+        // display received msg
+        String msg = intent.getStringExtra("msg");
+        Log.i("MainActivity.java | onNewIntent", "|" + msg + "|");
+        if (!TextUtils.isEmpty(msg))
+            Log.i("MainActivity.java | onNewIntent", "|" + msg + "|");
 
-                editor.putString("id", st_id);
-                editor.putString("pw", st_pw);
-                editor.putString("nickname", st_nickname);
-                editor.putString("phone_number", st_phone_number);
-                editor.putString("token", st_token);
-                editor.commit();
 
-                String st_response = jo_response.toString();
+    }
 
-                Intent intent = new Intent(this, MainActivity.class);
-                SingleToneData singleToneData = SingleToneData.getInstance();
-                singleToneData.setToken(st_token);
-                singleToneData.setMainResponseData(st_response);
+    // google play service가 사용가능한가
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this, PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                Log.i("MainActivity.java | checkPlayService", "|This device is not supported.|");
 
-                startActivity(intent);
-
-                finish();
-
-            }else{
-                Toast.makeText(getApplicationContext(), "intro login fail", Toast.LENGTH_SHORT).show();
-                goLoginActivity();
                 finish();
             }
-        }catch(JSONException e){
+            return false;
+        }
+        return true;
+    }
 
+    // registration  id를 가져온다.
+    private String getRegistrationId() {
+        String registrationId = PreferenceUtil.instance(getApplicationContext()).regId();
+        if (TextUtils.isEmpty(registrationId)) {
+            Log.i("MainActivity.java | getRegistrationId", "|Registration not found.|");
+
+            return "";
+        }
+        int registeredVersion = PreferenceUtil.instance(getApplicationContext()).appVersion();
+        int currentVersion = getAppVersion();
+        if (registeredVersion != currentVersion) {
+            Log.i("MainActivity.java | getRegistrationId", "|App version changed.|");
+
+
+            return "";
+        }
+        return registrationId;
+    }
+
+    // app version을 가져온다. 뭐에 쓰는건지는 모르겠다.
+    private int getAppVersion() {
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            return packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            // should never happen
+            throw new RuntimeException("Could not get package name: " + e);
         }
     }
 
+    // gcm 서버에 접속해서 registration id를 발급받는다.
+    private void registerInBackground() {
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                String msg = "";
+                try {
+                    if (_gcm == null) {
+                        _gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
+                    }
+                    _regId = _gcm.register(SENDER_ID);
+                    msg = "Device registered, registration ID=" + _regId;
 
+                    // For this demo: we don't need to send it because the device
+                    // will send upstream messages to a server that echo back the
+                    // message using the 'from' address in the message.
 
+                    // Persist the regID - no need to register again.
+                    storeRegistrationId(_regId);
+                } catch (IOException ex) {
+                    msg = "Error :" + ex.getMessage();
+                    // If there is an error, don't just keep trying to register.
+                    // Require the user to click a button again, or perform
+                    // exponential back-off.
+                }
+
+                return msg;
+            }
+
+            @Override
+            protected void onPostExecute(String msg) {
+                Log.i("MainActivity.java | onPostExecute", "|" + msg + "|");
+
+            }
+        }.execute(null, null, null);
+    }
+
+    // registraion id를 preference에 저장한다.
+    private void storeRegistrationId(String regId) {
+        int appVersion = getAppVersion();
+        Log.i("MainActivity.java | storeRegistrationId", "|" + "Saving regId on app version " + appVersion + "|");
+        PreferenceUtil.instance(getApplicationContext()).putRedId(regId);
+        PreferenceUtil.instance(getApplicationContext()).putAppVersion(appVersion);
+    }
 }
 

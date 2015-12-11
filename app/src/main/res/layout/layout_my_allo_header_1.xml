@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/selector_red_fill_btn"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:paddingTop="5dp"
+        android:id="@+id/ll_basic_q"
+        android:clickable="true"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기본 알로"
+            android:textColor="#fff"
+            android:textSize="14dp" />
+
+        <ImageView
+            android:id="@+id/ib_basic_q"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:padding="7dp"
+
+            android:src="@drawable/selector_q" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:clickable="true"
+                    android:id="@+id/ib_add_1"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/selector_add"/>
+
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/tv_title_1"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:maxLines="2"
+                    android:ellipsize="marquee"
+                    android:text="알로 선택"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/tv_artist_1"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:text="기본 알로"
+                    android:textAlignment="center"
+                    android:textColor="#aaa"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:clickable="true"
+                    android:id="@+id/ib_add_2"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/selector_add" />
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/tv_title_2"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:maxLines="2"
+                    android:ellipsize="marquee"
+                    android:text=""
+                    android:textColor="#000"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/tv_artist_2"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="#aaa"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:clickable="true"
+                    android:id="@+id/ib_add_3"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/selector_add" />
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/tv_title_3"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text=""
+                    android:maxLines="2"
+                    android:ellipsize="marquee"
+                    android:textColor="#000"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/tv_artist_3"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="#aaa"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:clickable="true"
+                    android:id="@+id/ib_add_4"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/selector_add" />
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/tv_title_4"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text=""
+                    android:textColor="#000"
+                    android:maxLines="2"
+                    android:ellipsize="marquee"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/tv_artist_4"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#aaa"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="+버튼을 눌러서 기본 알로를 추가해주세요."
+            android:textColor="#f91f30"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_friend_q"
+        android:clickable="true"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/selector_red_fill_btn"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="친구별 알로"
+            android:textColor="#fff"
+            android:textSize="14dp" />
+
+        <ImageView
+            android:id="@+id/ib_friend_q"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:padding="7dp"
+
+            android:src="@drawable/selector_q" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

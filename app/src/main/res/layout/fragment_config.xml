@@ -1,0 +1,183 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    android:padding="5dp">
+
+
+    <LinearLayout
+        android:background="@drawable/radius_white"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+
+                android:baselineAligned="false">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="15dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/selector_top_munu" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_marginRight="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="설정"
+                    android:textColor="#000"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="10dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#ddd" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:clickable="true"
+                android:background="@drawable/selector"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:orientation="horizontal"
+                android:id="@+id/ll_help"
+                android:layout_width="fill_parent"
+                android:gravity="center_vertical"
+                android:layout_height="70dp">
+                <TextView
+                    android:text="도움말"
+                    android:textSize="15dp"
+                    android:textColor="#000"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+                 <ImageView
+                     android:layout_width="10dp"
+                     android:layout_height="16dp"
+                     android:background="@drawable/foward_red_bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#eee" />
+
+            <LinearLayout
+                android:clickable="true"
+                android:background="@drawable/selector"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:orientation="horizontal"
+                android:id="@+id/ll_q"
+                android:layout_width="fill_parent"
+                android:gravity="center_vertical"
+                android:layout_height="70dp">
+                <TextView
+                    android:text="문의하기"
+                    android:textSize="15dp"
+                    android:textColor="#000"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/foward_red_bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#eee" />
+
+            <LinearLayout
+                android:clickable="true"
+                android:background="@drawable/selector"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:orientation="horizontal"
+                android:id="@+id/ll_password"
+                android:layout_width="fill_parent"
+                android:gravity="center_vertical"
+                android:layout_height="70dp">
+                <TextView
+                    android:text="비밀번호 변경"
+                    android:textSize="15dp"
+                    android:textColor="#000"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/foward_red_bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#eee" />
+
+            <LinearLayout
+                android:clickable="true"
+                android:background="@drawable/selector"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:orientation="horizontal"
+                android:id="@+id/ll_secede"
+                android:layout_width="fill_parent"
+                android:gravity="center_vertical"
+                android:layout_height="70dp">
+                <TextView
+                    android:text="탈퇴"
+                    android:textSize="15dp"
+                    android:textColor="#000"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/foward_red_bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#eee" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
