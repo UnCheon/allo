@@ -1,2 +1,8 @@
 # allo
-allo made by ringback manager 
+smart coloring application allo
+
+
+introduction
+allo is the smartest coloring application.
+
+Feature
