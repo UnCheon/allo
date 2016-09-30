@@ -2607,12 +2607,12 @@ containing a value of this type.
         public static final int white=0x7f0d007b;
     }
     public static final class dimen {
-        public static final int abc_action_bar_content_inset_material=0x7f08000d;
+        public static final int abc_action_bar_content_inset_material=0x7f08000c;
         public static final int abc_action_bar_default_height_material=0x7f080001;
         public static final int abc_action_bar_default_padding_material=0x7f080002;
         public static final int abc_action_bar_icon_vertical_padding_material=0x7f080012;
-        public static final int abc_action_bar_navigation_padding_start_material=0x7f08000e;
-        public static final int abc_action_bar_overflow_padding_end_material=0x7f08000f;
+        public static final int abc_action_bar_navigation_padding_start_material=0x7f08000d;
+        public static final int abc_action_bar_overflow_padding_end_material=0x7f08000e;
         public static final int abc_action_bar_overflow_padding_start_material=0x7f080013;
         public static final int abc_action_bar_progress_bar_size=0x7f080003;
         public static final int abc_action_bar_stacked_max_height=0x7f080014;
@@ -2698,7 +2698,7 @@ containing a value of this type.
         public static final int disabled_alpha_material_light=0x7f080059;
         public static final int item_touch_helper_max_drag_scroll_per_frame=0x7f08005a;
         public static final int materialviewpager_logoHeight=0x7f08005b;
-        public static final int mr_media_route_controller_art_max_height=0x7f08000c;
+        public static final int mr_media_route_controller_art_max_height=0x7f08000f;
         public static final int notification_large_icon_height=0x7f08005c;
         public static final int notification_large_icon_width=0x7f08005d;
         public static final int notification_subtext_size=0x7f08005e;
